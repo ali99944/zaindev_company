@@ -1,5 +1,3 @@
-import { Footer } from "@/src/components/common/footer"
-import { Navbar } from "@/src/components/common/navbar"
 import { CtaSection } from "@/src/components/landing/cta-section"
 import { ServicesCategories } from "./components/services-categories"
 import { ServicesGrid } from "./components/services-grid"
@@ -115,7 +113,6 @@ export default function ServicesPage() {
 
     return (
         <main className="min-h-screen bg-gray-50">
-            <Navbar />
             <ServicesHero />
             <Suspense>
                 <ServicesCategories categories={categories} />
@@ -125,7 +122,6 @@ export default function ServicesPage() {
             </Suspense>
             <ServicesProcess />
             <CtaSection />
-            <Footer />
         </main>
     )
 }

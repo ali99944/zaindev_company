@@ -1,5 +1,3 @@
-import { Footer } from "@/src/components/common/footer"
-import { Navbar } from "@/src/components/common/navbar"
 import { CtaSection } from "@/src/components/landing/cta-section"
 import { ServiceFaq } from "./components/service-faq"
 import { ServiceFeatures } from "./components/service-features"
@@ -157,7 +155,6 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <Navbar />
       <ServiceHero service={serviceData} />
       <ServiceSubServices service={serviceData} subServices={subServices} />
       <ServiceFeatures service={serviceData} />
@@ -165,7 +162,6 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
       <ServiceTestimonials />
       <ServiceFaq service={serviceData} />
       <CtaSection />
-      <Footer />
     </main>
   )
 }
