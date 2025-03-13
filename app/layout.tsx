@@ -3,7 +3,6 @@
 import type { Metadata } from 'next'
 import { Tajawal } from 'next/font/google'
 import '@/src/styles/globals.css'
-import Script from 'next/script'
 
 import { Navbar } from '@/src/components/common/navbar'
 import { Footer } from '@/src/components/common/footer'
@@ -29,14 +28,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
-       <head>
-        <meta name="google-site-verification" content="n0Qt8a4bsD3idqVUy-lPRHnZW_k69lIFW5asfqg1b28" />
-        <Script
-          src="https://embed.tawk.to/67accadb825083258e143345/1ijtfgr73"
-          strategy="afterInteractive"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body className={`${arabic.className} bg-white dark:bg-slate-950`}>
         <ReactQueryProvider>
             <Navbar />

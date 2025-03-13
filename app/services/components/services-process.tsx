@@ -40,7 +40,7 @@ export function ServicesProcess() {
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mx-12">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <h2 className="text-3xl font-bold mb-6">منهجية العمل</h2>
             <p className="text-gray-600 mb-8">
@@ -57,7 +57,7 @@ export function ServicesProcess() {
                   transition={{ delay: index * 0.1 }}
                   className="flex gap-4"
                 >
-                  <div className="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-xl flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-amber-500 text-black flex items-center justify-center  text-xl flex-shrink-0">
                     {step.number}
                   </div>
                   <div>
@@ -76,8 +76,8 @@ export function ServicesProcess() {
             transition={{ delay: 0.3 }}
             className="relative"
           >
-            <div className="absolute -inset-4 bg-amber-500/20 rounded-xl transform -rotate-3"></div>
-            <div className="relative rounded-xl overflow-hidden shadow-lg">
+            <div className="absolute -inset-4 bg-amber-500/20 rounded transform -rotate-3"></div>
+            <div className="relative rounded overflow-hidden shadow-lg">
               <Image
                 src="https://img.freepik.com/free-photo/business-people-shaking-hands-together_53876-30568.jpg"
                 alt="منهجية العمل"

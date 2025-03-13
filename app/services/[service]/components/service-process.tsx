@@ -68,9 +68,9 @@ export function ServiceProcess({ service }: ServiceProcessProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
+              className="bg-white rounded p-4 transition-all duration-300 border border-gray-100"
             >
-              <div className="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-xl mb-6">
+              <div className="w-12 h-12 rounded-full bg-amber-500 text-black flex items-center justify-center  text-xl mb-6">
                 {step.number}
               </div>
               <h3 className="text-xl font-bold mb-3">{step.title}</h3>

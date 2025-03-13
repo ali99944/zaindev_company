@@ -4,15 +4,16 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { Bell, Calendar, CreditCard, FileText, MapPin, MessageSquare, Smartphone } from 'lucide-react'
-import { DotPattern } from "./dot-pattern"
 import { IPhoneFrame } from "../device-frames/iphone-frame"
 import { AppServiceDetailsMockup } from "../mockups/app-service-details"
+import { BlueprintGrid } from "./blueprint-grid-pattern"
 
 export function MobileAppSection() {
   return (
     <section className="py-20 relative overflow-hidden">
       {/* Background Pattern */}
-    <DotPattern dotColor="#274C77" spacing={20} opacity={0.07} />
+    {/* <DotPattern dotColor="#274C77" spacing={20} opacity={0.07} /> */}
+    <BlueprintGrid opacity={0.3} />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -22,7 +23,7 @@ export function MobileAppSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center px-4 py-2 bg-black rounded-full mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-gray-900 rounded-full mb-6">
               <Smartphone className="w-4 h-4 text-amber-500 ml-2" />
               <span className="text-amber-500 text-sm font-medium">تطبيق زين التنموية</span>
             </div>

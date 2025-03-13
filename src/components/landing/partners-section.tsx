@@ -46,7 +46,7 @@ export function PartnersSection() {
                 alt={partner.name}
                 width={200}
                 height={100}
-                className="grayscale-0 group-hover:grayscale transition-all duration-300 max-h-20 object-contain"
+                className="grayscale-0 group-hover:grayscale transition-all duration-300 max-h-32 object-contain"
               />
             </motion.div>
           ))}

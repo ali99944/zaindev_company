@@ -15,7 +15,7 @@ export function ZainStoreSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className="inline-flex items-center px-4 py-2 bg-amber-500/10 rounded-full mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-gray-900 rounded-full mb-6">
               <ShoppingBag className="w-4 h-4 text-amber-500 ml-2" />
               <span className="text-amber-500 text-sm font-medium">متجر زين الإلكتروني</span>
             </div>

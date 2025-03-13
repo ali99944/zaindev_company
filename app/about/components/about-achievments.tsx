@@ -30,16 +30,18 @@ const achievements = [
 export function AboutAchievements() {
   return (
     <section className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-amber-500">
-        {/* Background Pattern */}
+      
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-500 to-amber-600">
+
+        {/* Diagonal Lines */}
         <div className="absolute inset-0 opacity-10">
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <pattern id="dots-pattern" width="30" height="30" patternUnits="userSpaceOnUse">
-                <circle cx="10" cy="10" r="2" fill="#000" />
+              <pattern id="diagonal-lines" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M-10,10 L30,-30 M0,40 L40,0 M30,50 L70,10" stroke="#000" strokeWidth="1" />
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#dots-pattern)" />
+            <rect width="100%" height="100%" fill="url(#diagonal-lines)" />
           </svg>
         </div>
       </div>
@@ -49,7 +51,7 @@ export function AboutAchievements() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <h2 className="text-3xl font-bold mb-4 text-black">إنجازاتنا بالأرقام</h2>
           <p className="text-black/80 max-w-3xl mx-auto">
@@ -122,7 +124,7 @@ function CounterCard({
       <div className="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-6">
         <Trophy className="w-8 h-8 text-amber-500" />
       </div>
-      <h3 className="text-4xl font-bold text-amber-500 mb-2">
+      <h3 className="text-3xl font-bold text-amber-500 mb-2">
         {isInView ? count : 0}
         {suffix}
       </h3>

@@ -78,11 +78,11 @@ export function ServiceFaq({ service }: ServiceFaqProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-lg shadow-sm overflow-hidden"
+                className="bg-white rounded overflow-hidden"
               >
                 <button
                   onClick={() => toggleFaq(index)}
-                  className="flex items-center justify-between w-full p-6 text-right"
+                  className="flex items-center justify-between w-full p-4 text-right"
                 >
                   <h3 className="text-lg font-bold">{faq.question}</h3>
                   <ChevronDown

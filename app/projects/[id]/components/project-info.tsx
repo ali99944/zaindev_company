@@ -41,12 +41,12 @@ export function ProjectInfo({ project }: { project: Project }) {
             </div>
 
             {project.client && (
-              <div className="bg-white rounded-lg p-6 shadow-sm border-r-4 border-amber-500">
+              <div className="bg-white rounded p-4">
                 <h3 className="text-xl font-bold mb-3">عن العميل</h3>
                 <div className="flex items-center gap-4">
                   {project.infologo ? (
                     <Image
-                      src={project.infologo || "/placeholder.svg"}
+                      src={'https://img.freepik.com/free-vector/indonesian-halal-logo-new-branding-2022_17005-1495.jpg?ga=GA1.1.259795667.1741285641&semt=ais_authors_boost'}
                       alt={project.client}
                       width={80}
                       height={80}
@@ -76,19 +76,19 @@ export function ProjectInfo({ project }: { project: Project }) {
             {project.images && project.images.length > 1 ? (
               <div className="grid grid-cols-2 gap-4">
                 {project.images.slice(1, 5).map((image, index) => (
-                  <div key={image.id} className="relative overflow-hidden rounded-lg shadow-sm">
+                  <div key={image.id} className="relative overflow-hidden rounded">
                     <Image
                       src={image.image || "/placeholder.svg"}
                       alt={image.alt || `${project.name} - صورة ${index + 2}`}
                       width={300}
                       height={200}
-                      className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
+                      className="w-full h-48 object-cover transition-transform duration-300"
                     />
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="relative overflow-hidden rounded-lg shadow-sm">
+              <div className="relative overflow-hidden rounded">
                 <Image
                   src="/placeholder.svg?height=400&width=600"
                   alt={project.name}

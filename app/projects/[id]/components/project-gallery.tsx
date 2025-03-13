@@ -62,7 +62,7 @@ export function ProjectGallery({ images }: { images: ProjectImage[] }) {
               className="group cursor-pointer"
               onClick={() => openLightbox(index)}
             >
-              <div className="relative overflow-hidden rounded-lg shadow-sm">
+              <div className="relative overflow-hidden rounded">
                 <Image
                   src={image.image || "/placeholder.svg"}
                   alt={image.alt || `صورة ${index + 1}`}

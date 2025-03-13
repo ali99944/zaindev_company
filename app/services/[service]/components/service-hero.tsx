@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Building2 } from "lucide-react"
-import { DotPattern } from "@/src/components/common/dot-pattern"
+import { BlueprintGrid } from "@/src/components/common/blueprint-grid-pattern"
 
 interface ServiceProps {
   service: {
@@ -22,12 +22,12 @@ export function ServiceHero({ service }: ServiceProps) {
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
       {/* Background Pattern */}
-      <DotPattern dotColor="#f59e0b" spacing={20} opacity={0.07} />
-
+      <BlueprintGrid opacity={0.3} />
+      
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <div className="inline-flex items-center px-4 py-2 bg-amber-500/10 rounded-full mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-black rounded-full mb-6">
               <span className="text-amber-500 text-sm font-medium">خدماتنا</span>
             </div>
 
@@ -101,8 +101,8 @@ export function ServiceHero({ service }: ServiceProps) {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="absolute -inset-4 bg-amber-500/20 rounded-xl transform rotate-3"></div>
-            <div className="relative rounded-xl overflow-hidden shadow-lg h-[450px]">
+            <div className="absolute -inset-4 bg-amber-500/20 rounded transform rotate-3"></div>
+            <div className="relative rounded overflow-hidden shadow-lg h-[450px]">
               <Image
                 src="https://img.freepik.com/free-photo/construction-concept-with-engineering-tools_23-2149177174.jpg"
                 alt={service.name}

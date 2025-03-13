@@ -61,8 +61,8 @@ export function AboutHero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="absolute -inset-4 bg-amber-500/20 rounded-xl transform rotate-3"></div>
-            <div className="relative rounded-xl overflow-hidden shadow-lg">
+            <div className="absolute -inset-4 bg-amber-500/20 rounded transform rotate-3"></div>
+            <div className="relative rounded overflow-hidden shadow-lg">
               <Image
                 src="https://img.freepik.com/free-photo/vertical-low-angle-shot-high-rise-skyscrapers-glass-facade-frankfurt-germany_181624-7114.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
                 alt="زين التنموية"

@@ -89,6 +89,14 @@ export function Navbar() {
               >
                 تطبيقنا
               </Link>
+              <Link 
+                href="/blogs" 
+                className={`text-sm font-medium hover:text-amber-500 transition-colors ${
+                  isScrolled ? "text-gray-700" : "text-black"
+                }`}
+              >
+                مدونتنا
+              </Link>
             </div>
 
             {/* CTA Buttons */}
@@ -187,6 +195,13 @@ export function Navbar() {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     تطبيقنا
+                  </Link>
+                  <Link 
+                    href="/blogs" 
+                    className="text-lg font-medium text-gray-700 hover:text-amber-500 transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    مدونتنا
                   </Link>
                 </div>
               </div>

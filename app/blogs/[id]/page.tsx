@@ -1,5 +1,3 @@
-import { Footer } from "@/src/components/common/footer"
-import { Navbar } from "@/src/components/common/navbar"
 import { CtaSection } from "@/src/components/landing/cta-section"
 import { getArticleById, getRelatedArticles } from "@/src/data/articles"
 import { ArticleAuthor } from "./components/article-author"
@@ -31,13 +29,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
 
   return (
     <main>
-      <Navbar />
       <ArticleHero article={article} />
       <ArticleContent article={article} />
       <ArticleAuthor author={article.author} />
       <RelatedArticles articles={relatedArticles} />
       <CtaSection />
-      <Footer />
     </main>
   )
 }

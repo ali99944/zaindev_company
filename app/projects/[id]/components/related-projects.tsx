@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
 import { categories, Project } from "@/src/data/projects"
 
 export function RelatedProjects({ projects }: { projects: Project[] }) {
@@ -22,7 +21,7 @@ export function RelatedProjects({ projects }: { projects: Project[] }) {
           <p className="text-gray-600 max-w-3xl mx-auto">اكتشف المزيد من مشاريعنا المميزة في نفس المجال</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -30,9 +29,8 @@ export function RelatedProjects({ projects }: { projects: Project[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+              className="group bg-gray-50 rounded overflow-hidden"
             >
-              <Link href={`/projects/${project.id}`} className="block">
                 <div className="relative h-48 overflow-hidden">
                   {project.images && project.images.length > 0 ? (
                     <Image
@@ -40,7 +38,7 @@ export function RelatedProjects({ projects }: { projects: Project[] }) {
                       alt={project.images[0].alt || project.name}
                       width={400}
                       height={300}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <Image
@@ -52,23 +50,20 @@ export function RelatedProjects({ projects }: { projects: Project[] }) {
                     />
                   )}
                   <div className="absolute top-4 right-4">
-                    <span className="inline-block px-3 py-1 bg-amber-500 text-white rounded-full text-xs font-medium">
+                    <span className="inline-block px-3 py-1 bg-amber-500 text-black rounded-full text-xs font-medium">
                       {categories.find((c) => c.id === project.category)?.label || project.project_type}
                     </span>
                   </div>
                 </div>
 
                 <div className="p-4">
-                  <h3 className="text-lg font-bold mb-2 group-hover:text-amber-500 transition-colors">
-                    {project.name}
-                  </h3>
-                  <p className="text-gray-600 text-sm line-clamp-2 mb-4">{project.short}</p>
-                  <div className="flex items-center text-amber-500 text-sm font-medium">
-                    <span>عرض التفاصيل</span>
-                    <ArrowLeft className="w-4 h-4 mr-1" />
-                  </div>
+                  <Link href={`/projects/${project.id}`}>
+                    <h3 className="text-lg font-bold mb-2 transition-colors">
+                      {project.name}
+                    </h3>
+                  </Link>
+                  <p className="text-gray-600 text-sm line-clamp-2">{project.short}</p>
                 </div>
-              </Link>
             </motion.div>
           ))}
         </div>
@@ -82,10 +77,9 @@ export function RelatedProjects({ projects }: { projects: Project[] }) {
         >
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-black font-medium px-6 py-3 rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-black font-medium px-6 py-2 rounded transition-colors"
           >
             <span>عرض جميع المشاريع</span>
-            <ArrowLeft className="w-4 h-4" />
           </Link>
         </motion.div>
       </div>

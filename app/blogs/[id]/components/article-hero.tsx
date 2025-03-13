@@ -97,7 +97,7 @@ export function ArticleHero({ article }: { article: Article }) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative rounded-xl overflow-hidden shadow-lg mb-8"
+            className="relative rounded overflow-hidden shadow-lg mb-8"
           >
             <Image
               src={article.featured_image || "/placeholder.svg"}

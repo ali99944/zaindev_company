@@ -54,7 +54,7 @@ export function AboutTeam() {
               transition={{ delay: index * 0.1 }}
               className="group"
             >
-              <div className="relative overflow-hidden rounded-xl mb-4">
+              <div className="relative overflow-hidden rounded mb-4">
                 <Image
                   src={member.image || "/placeholder.svg"}
                   alt={member.name}

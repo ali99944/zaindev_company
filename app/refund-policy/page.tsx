@@ -7,7 +7,7 @@ export default function RefundPolicyPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl font-bold mb-8 text-center">سياسة الاسترجاع</h1>
-            <div className="bg-white rounded-xl shadow-sm p-8 md:p-12">
+            <div className="bg-white rounded p-8 md:p-12">
               <RefundPolicyContent />
             </div>
           </div>

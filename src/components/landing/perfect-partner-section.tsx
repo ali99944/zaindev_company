@@ -36,7 +36,7 @@ export function PerfectPartnerSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center px-4 py-2 bg-amber-500/10 rounded-full mb-6"
+              className="inline-flex items-center px-4 py-2 bg-gray-900 rounded-full mb-6"
             >
               <span className="text-amber-500 text-sm font-medium">الشريك الأمثل لمشاريع المستقبل</span>
             </motion.div>
@@ -99,8 +99,8 @@ export function PerfectPartnerSection() {
             className="relative"
           >
             <div className="relative">
-              <div className="absolute -inset-4 bg-black/5 rounded-xl transform rotate-3"></div>
-              <div className="relative rounded-xl overflow-hidden shadow">
+              <div className="absolute -inset-4 bg-black/5 rounded transform rotate-3"></div>
+              <div className="relative rounded overflow-hidden shadow">
                 <Image
                   src="https://img.freepik.com/premium-photo/business-handshake-city-double-exposure-with-team-deal-negotiation-success-company-urban-businesspeople-gesture-with-hands-partnership-developers-contract-agreement_590464-423898.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
                   alt="مشاريع زين التنموية"

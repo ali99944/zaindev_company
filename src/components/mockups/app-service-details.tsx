@@ -200,7 +200,7 @@ export function AppServiceDetailsMockup() {
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="bg-white rounded-xl p-4 m-4 w-[250px]"
+              className="bg-white rounded p-4 m-4 w-[250px]"
             >
               <div className="flex justify-center mb-4">
                 <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">

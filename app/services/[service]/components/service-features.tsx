@@ -59,7 +59,7 @@ export function ServiceFeatures({ service }: ServiceFeaturesProps) {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -67,7 +67,7 @@ export function ServiceFeatures({ service }: ServiceFeaturesProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border-t-4 border-amber-500"
+              className="bg-white rounded p-4 transition-all duration-300"
             >
               <div className="w-16 h-16 rounded-full bg-amber-50 flex items-center justify-center text-amber-500 mb-6">
                 {feature.icon}

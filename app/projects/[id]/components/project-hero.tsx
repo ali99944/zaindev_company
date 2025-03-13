@@ -9,7 +9,7 @@ import { BlueprintGrid } from "@/src/components/common/blueprint-grid-pattern"
 export function ProjectHero({ project }: { project: Project }) {
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
-        <BlueprintGrid opacity={1} />
+        <BlueprintGrid opacity={0.3} />
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -76,8 +76,8 @@ export function ProjectHero({ project }: { project: Project }) {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="absolute -inset-4 bg-amber-500/20 rounded-xl transform rotate-3"></div>
-            <div className="relative rounded-xl overflow-hidden shadow-lg">
+            <div className="absolute -inset-4 bg-amber-500/20 rounded transform rotate-3"></div>
+            <div className="relative rounded overflow-hidden shadow-lg">
               {project.images && project.images.length > 0 ? (
                 <Image
                   src={project.images[0].image || "/placeholder.svg"}

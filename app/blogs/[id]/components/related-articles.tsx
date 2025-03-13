@@ -36,10 +36,10 @@ export function RelatedArticles({ articles }: { articles: Article[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group bg-white rounded overflow-hidden"
+              className="group bg-gray-50 rounded overflow-hidden"
             >
               <Link href={`/blog/${article.id}`} className="block">
-                <div className="relative h-4608 overflow-hidden">
+                <div className="relative h-60 overflow-hidden">
                   <Image
                     src={article.featured_image || "/placeholder.svg"}
                     alt={article.title}
@@ -65,7 +65,7 @@ export function RelatedArticles({ articles }: { articles: Article[] }) {
                         {article.title}
                     </h3>
 
-                  <p className="text-gray-600 mb-4 line-clamp-2">{article.excerpt}</p>
+                  <p className="text-gray-600 line-clamp-2">{article.excerpt}</p>
                 </div>
             </motion.div>
           ))}

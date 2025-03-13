@@ -1,5 +1,6 @@
 "use client"
 
+import { formatRiyal } from "@/lib/format-riyal"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
@@ -47,23 +48,27 @@ export function ServiceSubServices({ service, subServices }: ServiceSubServicesP
               transition={{ delay: index * 0.1 }}
               className="bg-white rounded overflow-hidden transition-all duration-300 group border border-gray-100"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-52 overflow-hidden">
                 <Image
                   src={
                     'https://img.freepik.com/free-vector/hand-drawn-our-services-infographic-template_23-2149889309.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid'
                   }
                   alt={subService.name}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover transition-transform duration-500"
                 />
               </div>
 
               <div className="p-4">
-                <Link href={`/services/${service.id}/${subService.id}`}>
-                    <h3 className="text-md font-bold mb-2 transition-colors">
-                    {subService.name}
-                    </h3>
-                </Link>
+                <div className="flex items-center justify-between">
+                  <Link href={`/services/${service.id}/${subService.id}`}>
+                      <h3 className="text-md font-bold mb-2 transition-colors">
+                      {subService.name}
+                      </h3>
+                  </Link>
+
+                  <p className="text-amber-500">{formatRiyal(subService.price)}</p>
+                </div>
                 <p className="text-gray-600 line-clamp-2">{subService.short}</p>
 
               </div>

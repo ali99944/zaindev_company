@@ -53,7 +53,7 @@ export function ServicesGrid({ services }: ServicesGridProps) {
             <p className="text-gray-500 text-lg">لا توجد خدمات في هذه الفئة حالياً</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {filteredServices.map((service, index) => (
               <motion.div
                 key={service.id}
@@ -93,7 +93,7 @@ export function ServicesGrid({ services }: ServicesGridProps) {
                     </Link>
                   </div>
 
-                  <p className="text-gray-600 mb-6 line-clamp-2 text-right">{service.short}</p>
+                  <p className="text-gray-600  line-clamp-2 text-right">{service.short}</p>
                 </div>
               </motion.div>
             ))}

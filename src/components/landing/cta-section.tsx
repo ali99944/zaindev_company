@@ -78,7 +78,7 @@ export function CtaSection() {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg text-white mb-1">اتصل بنا</h3>
+                    <h3 className="font-bold text-lg text-black mb-1">اتصل بنا</h3>
                     <p className="text-gray-700">800 123 4567</p>
                     <p className="text-gray-700">+966 50 000 0000</p>
                   </div>
@@ -89,7 +89,7 @@ export function CtaSection() {
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg text-white mb-1">البريد الإلكتروني</h3>
+                    <h3 className="font-bold text-lg text-black mb-1">البريد الإلكتروني</h3>
                     <p className="text-gray-700">info@zaindev.com</p>
                     <p className="text-gray-700">support@zaindev.com</p>
                   </div>
@@ -100,7 +100,7 @@ export function CtaSection() {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg text-white mb-1">العنوان</h3>
+                    <h3 className="font-bold text-lg text-black mb-1">العنوان</h3>
                     <p className="text-gray-700">الرياض، المملكة العربية السعودية</p>
                     <p className="text-gray-700">طريق الملك فهد، برج المملكة، الطابق 20</p>
                   </div>

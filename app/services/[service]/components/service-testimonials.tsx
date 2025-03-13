@@ -66,7 +66,7 @@ export function ServiceTestimonials() {
             <div className="absolute -right-4 top-1/2 -translate-y-1/2 z-10">
               <button
                 onClick={prevTestimonial}
-                className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-amber-500 hover:bg-amber-500 hover:text-white transition-colors"
+                className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-amber-500 hover:bg-amber-500 hover:text-black transition-colors"
                 aria-label="Previous testimonial"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -76,7 +76,7 @@ export function ServiceTestimonials() {
             <div className="absolute -left-4 top-1/2 -translate-y-1/2 z-10">
               <button
                 onClick={nextTestimonial}
-                className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-amber-500 hover:bg-amber-500 hover:text-white transition-colors"
+                className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-amber-500 hover:bg-amber-500 hover:text-black transition-colors"
                 aria-label="Next testimonial"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -90,7 +90,7 @@ export function ServiceTestimonials() {
               >
                 {testimonials.map((testimonial) => (
                   <div key={testimonial.id} className="w-full flex-shrink-0">
-                    <div className="bg-white rounded-xl p-8 shadow-sm">
+                    <div className="bg-white rounded p-4">
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-16 h-16 rounded-full overflow-hidden">
                           <Image

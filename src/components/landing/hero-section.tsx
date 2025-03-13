@@ -218,7 +218,7 @@ export function HeroSection() {
               <div className="relative">
                 {/* Tilted Background */}
                 <motion.div 
-                  className="absolute -inset-4 bg-amber-500/20 rounded-xl"
+                  className="absolute -inset-4 bg-amber-500/20 rounded"
                   initial={{ rotate: 6 }}
                   whileHover={{ rotate: 4 }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -226,7 +226,7 @@ export function HeroSection() {
                 
                 {/* Main Image */}
                 <motion.div 
-                  className="relative h-full overflow-hidden rounded-xl"
+                  className="relative h-full overflow-hidden rounded"
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <Image

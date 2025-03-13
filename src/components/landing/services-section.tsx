@@ -80,15 +80,11 @@ export function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`group relative bg-white rounded p-3 transition-all duration-300 border border-gray-200 `}
+              className={`group relative bg-white rounded p-4 transition-all duration-300 border border-gray-200 `}
             >
-              {/* Service Card Corner Decoration */}
-              {/* <div className="absolute -top-px -right-px w-12 h-12 overflow-hidden">
-                <div className={`absolute transform rotate-45 bg-${service.color}-500 text-white shadow-sm w-[68px] -translate-y-1/2 translate-x-1/2`}></div>
-              </div> */}
 
                 <div>
-                  <Link href={`/services/${service.id}`} className="flex items-center">
+                  <Link href={`/services/${service.id}`} className="flex items-center mb-2">
                   <div 
                     className="text-amber-500"
                     dangerouslySetInnerHTML={{

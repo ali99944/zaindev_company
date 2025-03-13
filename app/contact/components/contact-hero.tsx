@@ -8,7 +8,7 @@ export function ContactHero() {
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
       {/* Background Pattern */}
-      <BlueprintGrid opacity={0.4} />
+      <BlueprintGrid opacity={0.3} />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div

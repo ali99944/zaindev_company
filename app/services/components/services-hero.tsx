@@ -3,18 +3,18 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Wrench, Building2, Zap, Paintbrush, Droplets, Thermometer, Sparkles } from "lucide-react"
-import { DotPattern } from "@/src/components/common/dot-pattern"
+import { BlueprintGrid } from "@/src/components/common/blueprint-grid-pattern"
 
 export function ServicesHero() {
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
       {/* Background Pattern */}
-      <DotPattern dotColor="#f59e0b" spacing={20} opacity={0.07} />
+      <BlueprintGrid opacity={0.3} />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <div className="inline-flex items-center px-4 py-2 bg-amber-500/10 rounded-full mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-gray-900 rounded-full mb-6">
               <span className="text-amber-500 text-sm font-medium">خدماتنا المتميزة</span>
             </div>
 
@@ -30,37 +30,37 @@ export function ServicesHero() {
             </p>
 
             <div className="flex flex-wrap gap-4 mb-8">
-              <div className="flex items-center gap-2 bg-black rounded-full px-4 py-2 ">
+              <div className="flex items-center gap-2 bg-gray-900 rounded-full px-4 py-2 ">
                 <Building2 className="w-5 h-5 text-amber-500" />
                 <span className="text-white/80 text-sm">المقاولات</span>
               </div>
 
-              <div className="flex items-center gap-2 bg-black rounded-full px-4 py-2 ">
+              <div className="flex items-center gap-2 bg-gray-900 rounded-full px-4 py-2 ">
                 <Wrench className="w-5 h-5 text-amber-500" />
                 <span className="text-white/80 text-sm">الصيانة</span>
               </div>
 
-              <div className="flex items-center gap-2 bg-black rounded-full px-4 py-2 ">
+              <div className="flex items-center gap-2 bg-gray-900 rounded-full px-4 py-2 ">
                 <Paintbrush className="w-5 h-5 text-amber-500" />
                 <span className="text-white/80 text-sm">التصميم</span>
               </div>
 
-              <div className="flex items-center gap-2 bg-black rounded-full px-4 py-2 ">
+              <div className="flex items-center gap-2 bg-gray-900 rounded-full px-4 py-2 ">
                 <Zap className="w-5 h-5 text-amber-500" />
                 <span className="text-white/80 text-sm">الكهرباء</span>
               </div>
 
-              <div className="flex items-center gap-2 bg-black rounded-full px-4 py-2 ">
+              <div className="flex items-center gap-2 bg-gray-900 rounded-full px-4 py-2 ">
                 <Droplets className="w-5 h-5 text-amber-500" />
                 <span className="text-white/80 text-sm">السباكة</span>
               </div>
 
-              <div className="flex items-center gap-2 bg-black rounded-full px-4 py-2 ">
+              <div className="flex items-center gap-2 bg-gray-900 rounded-full px-4 py-2 ">
                 <Thermometer className="w-5 h-5 text-amber-500" />
                 <span className="text-white/80 text-sm">التكييف</span>
               </div>
 
-              <div className="flex items-center gap-2 bg-black rounded-full px-4 py-2 ">
+              <div className="flex items-center gap-2 bg-gray-900 rounded-full px-4 py-2 ">
                 <Sparkles className="w-5 h-5 text-amber-500" />
                 <span className="text-white/80 text-sm">التنظيف</span>
               </div>

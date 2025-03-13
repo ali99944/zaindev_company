@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { Building2 } from "lucide-react"
-import { DotPattern } from "@/src/components/common/dot-pattern"
+import { BlueprintGrid } from "@/src/components/common/blueprint-grid-pattern"
 
 interface SubServiceHeroProps {
   service: {
@@ -26,7 +26,7 @@ export function SubServiceHero({ service, subService }: SubServiceHeroProps) {
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
       {/* Background Pattern */}
-      <DotPattern dotColor="#f59e0b" spacing={20} opacity={0.07} />
+      <BlueprintGrid opacity={0.3} />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -63,8 +63,7 @@ export function SubServiceHero({ service, subService }: SubServiceHeroProps) {
             <div className="relative rounded overflow-hidden  h-[450px]">
               <Image
                 src={
-                  subService.logo ||
-                  "https://img.freepik.com/free-vector/hand-drawn-our-services-infographic-template_23-2149889309.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
+                  "https://img.freepik.com/free-vector/hand-drawn-our-services-infographic-template_23-2149889315.jpg?ga=GA1.1.259795667.1741285641&semt=ais_authors_boost"
                 }
                 alt={subService.name}
                 fill

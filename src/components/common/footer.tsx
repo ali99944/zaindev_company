@@ -12,40 +12,14 @@ import {
   Mail,
   Phone,
   MapPin,
-  ArrowRight,
-  CreditCard,
-  ShieldCheck,
 } from "lucide-react"
 
-// Sample payment methods - replace with actual payment methods
-const paymentMethods = [
-  {
-    name: "Visa",
-    image:
-      "https://img.freepik.com/free-vector/black-credit-card_1017-6276.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid",
-  },
-  {
-    name: "Mastercard",
-    image:
-      "https://img.freepik.com/free-vector/credit-card-icon_1071-54.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid",
-  },
-  {
-    name: "Apple Pay",
-    image:
-      "https://img.freepik.com/free-vector/apple-pay-logo_578229-339.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid",
-  },
-  {
-    name: "Mada",
-    image:
-      "https://img.freepik.com/free-vector/credit-card-icon_1071-54.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid",
-  },
-]
 
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-white relative overflow-hidden">
       {/* Main Footer */}
-      <div className="pt-16 pb-12 relative z-10">
+      <div className="py-12 relative z-10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* Column 1: Company Info */}
@@ -65,7 +39,7 @@ export function Footer() {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 transition-colors duration-300"
+                  className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors duration-300"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-5 h-5" />
@@ -74,7 +48,7 @@ export function Footer() {
                   href="https://twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 transition-colors duration-300"
+                  className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors duration-300"
                   aria-label="Twitter"
                 >
                   <Twitter className="w-5 h-5" />
@@ -83,7 +57,7 @@ export function Footer() {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 transition-colors duration-300"
+                  className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors duration-300"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-5 h-5" />
@@ -92,7 +66,7 @@ export function Footer() {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 transition-colors duration-300"
+                  className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors duration-300"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
@@ -109,7 +83,6 @@ export function Footer() {
                     href="/about"
                     className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
                   >
-                    <ArrowRight className="w-4 h-4" />
                     <span>من نحن</span>
                   </Link>
                 </li>
@@ -118,7 +91,6 @@ export function Footer() {
                     href="/services"
                     className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
                   >
-                    <ArrowRight className="w-4 h-4" />
                     <span>خدماتنا</span>
                   </Link>
                 </li>
@@ -127,7 +99,6 @@ export function Footer() {
                     href="/projects"
                     className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
                   >
-                    <ArrowRight className="w-4 h-4" />
                     <span>مشاريعنا</span>
                   </Link>
                 </li>
@@ -136,7 +107,6 @@ export function Footer() {
                     href="/store"
                     className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
                   >
-                    <ArrowRight className="w-4 h-4" />
                     <span>المتجر</span>
                   </Link>
                 </li>
@@ -145,7 +115,6 @@ export function Footer() {
                     href="/contact"
                     className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
                   >
-                    <ArrowRight className="w-4 h-4" />
                     <span>اتصل بنا</span>
                   </Link>
                 </li>
@@ -190,42 +159,6 @@ export function Footer() {
               </ul>
             </div>
 
-          </div>
-        </div>
-      </div>
-
-      {/* Payment Methods Section */}
-      <div className="border-t border-gray-800 py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-gray-400 text-sm flex items-center gap-2">
-              <CreditCard className="w-5 h-5 text-amber-500" />
-              <span>وسائل الدفع المتاحة</span>
-            </div>
-
-            {paymentMethods && paymentMethods.length > 0 ? (
-              <div className="flex items-center gap-4 flex-wrap justify-center">
-                {paymentMethods.map((method, index) => (
-                  <div
-                    key={`${method.name}-${index}`}
-                    className="rounded transition-colors"
-                  >
-                    <Image
-                      src={method.image || "/placeholder.svg"}
-                      alt={method.name}
-                      width={60}
-                      height={32}
-                      className="h-8 w-auto object-contain"
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 bg-gray-800 rounded p-3">
-                <ShieldCheck className="w-5 h-5 text-amber-500" />
-                <span className="text-gray-400 text-sm">جميع المعاملات آمنة ومشفرة</span>
-              </div>
-            )}
           </div>
         </div>
       </div>
