@@ -1,12 +1,25 @@
 "use client"
 
+import GridLoader from "@/src/components/loaders/grid-loader"
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import Project from "@/src/types/project"
+import ProjectType from "@/src/types/project-type"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { categories, Project } from "@/src/data/projects"
 
 export function RelatedProjects({ projects }: { projects: Project[] }) {
+  
+  const { data: project_types, isLoading: is_project_types_loading } = useGetQuery<ProjectType[]>({
+    url: 'project-types',
+    key: ['project-types']
+  })
+
   if (!projects || projects.length === 0) return null
+
+  if(is_project_types_loading) {
+    return <GridLoader />
+  }
 
   return (
     <section className="py-20">
@@ -32,26 +45,16 @@ export function RelatedProjects({ projects }: { projects: Project[] }) {
               className="group bg-gray-50 rounded overflow-hidden"
             >
                 <div className="relative h-48 overflow-hidden">
-                  {project.images && project.images.length > 0 ? (
-                    <Image
-                      src={project.images[0].image || "/placeholder.svg"}
-                      alt={project.images[0].alt || project.name}
-                      width={400}
-                      height={300}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <Image
-                      src="/placeholder.svg?height=300&width=400"
+                <Image
+                      src={project.image || '/placeholder.svg?height=300&width=400'}
                       alt={project.name}
                       width={400}
                       height={300}
                       className="w-full h-full object-cover"
                     />
-                  )}
                   <div className="absolute top-4 right-4">
                     <span className="inline-block px-3 py-1 bg-amber-500 text-black rounded-full text-xs font-medium">
-                      {categories.find((c) => c.id === project.category)?.label || project.project_type}
+                      {project_types?.data.find((c) => c.name === project.project_type)?.name || project.project_type}
                     </span>
                   </div>
                 </div>

@@ -1,16 +1,27 @@
 import { CtaSection } from "@/src/components/landing/cta-section"
-import { getArticleById, getRelatedArticles } from "@/src/data/articles"
-import { ArticleAuthor } from "./components/article-author"
-import { ArticleContent } from "./components/article-content"
-import { ArticleHero } from "./components/article-hero"
-import { RelatedArticles } from "./components/related-articles"
+import { BlogAuthor } from "./components/blog-author"
+import { BlogContent } from "./components/blog-content"
+import { BlogHero } from "./components/blog-hero"
+import { getSingleBlog } from "@/src/server-actions/blog"
+import { Metadata } from "next"
+import { RelatedBlogs } from "./components/related-blogs"
 
-export default async function ArticlePage({ params }: { params: Promise<{ id: string }> }) {
-  const articleId = Number.parseInt((await params).id)
-  const article = getArticleById(articleId)
-  const relatedArticles = getRelatedArticles(articleId)
 
-  if (!article) {
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const blog = await getSingleBlog((await params).id)
+  
+  return {
+    title: blog.seo_title ?? blog.name,
+    description: blog.seo_description || blog.description,
+    keywords: blog.seo_keywords || [blog.name, blog.description, blog.short]
+  }
+}
+
+
+export default async function BlogPage({ params }: { params: Promise<{ id: string }> }) {
+  const blog = await getSingleBlog((await params).id)
+
+  if (!blog) {
     return (
       <main className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -29,10 +40,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
 
   return (
     <main>
-      <ArticleHero article={article} />
-      <ArticleContent article={article} />
-      <ArticleAuthor author={article.author} />
-      <RelatedArticles articles={relatedArticles} />
+      <BlogHero blog={blog} />
+      <BlogContent blog={blog} />
+      <BlogAuthor blog={blog} />
+      <RelatedBlogs blogs={[]} />
       <CtaSection />
     </main>
   )

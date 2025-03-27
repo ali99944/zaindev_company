@@ -5,43 +5,45 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { Calendar, Clock, Newspaper } from 'lucide-react'
-import { getAllArticles, getArticlesByCategory } from "@/src/data/articles"
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import ApiEndpoints from "@/src/constants/endpoints"
+import Blog from "@/src/types/blog"
+import BlogCategory from "@/src/types/blog-category"
+import TextLoader from "@/src/components/loaders/text-loader"
+import GridLoader from "@/src/components/loaders/grid-loader"
+import moment from "moment"
 
-// Sample categories for filtering
-const categories = [
-  { id: "all", label: "جميع المقالات" },
-  { id: "تصميم داخلي", label: "تصميم داخلي" },
-  { id: "مواد بناء", label: "مواد بناء" },
-  { id: "تقنيات بناء", label: "تقنيات بناء" },
-  { id: "تطوير عقاري", label: "تطوير عقاري" },
-  { id: "استدامة", label: "استدامة" },
-]
 
-export function BlogsGrid() {
-  const [activeCategory, setActiveCategory] = useState("all")
-  const allArticles = getAllArticles()
-  const filteredArticles = activeCategory === "all" 
-    ? allArticles 
-    : getArticlesByCategory(activeCategory)
+export function BlogsGrid  () {
+  const { data: response, isLoading } = useGetQuery<Blog[]>({
+    url: ApiEndpoints.articles.all,
+    key: ['blogs'],
+  })
 
-  // Format date function
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
-    return new Date(dateString).toLocaleDateString('ar-SA', options)
-  }
+  const { data: categories, isLoading: is_categories_loading } = useGetQuery<BlogCategory[]>({
+    url: 'blogs-categories',
+    key: ['categories'],
+  })
+
+  const [activeCategory, setActiveCategory] = useState<number | null>(null)
+
 
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         {/* Categories Filter */}
-        <motion.div
+        {
+          is_categories_loading ? (
+            <TextLoader />
+          ) : (
+            <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
           className="flex flex-wrap gap-3 mb-12 justify-center"
         >
-          {categories.map((category) => (
+          {categories?.data.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
@@ -49,17 +51,23 @@ export function BlogsGrid() {
                 activeCategory === category.id ? "bg-amber-500 text-black" : "bg-gray-200 text-gray-700 hover:bg-gray-300"
               }`}
             >
-              {category.label}
+              {category.name}
             </button>
           ))}
         </motion.div>
+          )
+        }
 
         {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {
+          isLoading ? (
+              <GridLoader />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <AnimatePresence mode="wait">
-            {filteredArticles.map((article, index) => (
+            {response?.data.map((blog, index) => (
               <motion.div
-                key={article.id}
+                key={blog.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9 }}
@@ -67,18 +75,18 @@ export function BlogsGrid() {
                 transition={{ delay: index * 0.1 }}
                 className="group bg-white rounded overflow-hidden transition-all duration-300"
               >
-                <Link href={`/blog/${article.id}`} className="block">
+                <Link href={`/articles/${blog.id}`} className="block">
                   <div className="relative h-56 overflow-hidden">
                     <Image
-                      src={article.featured_image || "/placeholder.svg"}
-                      alt={article.title}
+                      src={blog.image || "/placeholder.svg"}
+                      alt={blog.name}
                       width={400}
                       height={300}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute top-4 right-4">
                       <span className="inline-block px-3 py-1 bg-amber-500 text-black rounded-full text-xs font-medium">
-                        {article.category}
+                        {blog.category.name}
                       </span>
                     </div>
                   </div>
@@ -87,30 +95,30 @@ export function BlogsGrid() {
                     <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
                       <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
-                        <span>{formatDate(article.publish_date)}</span>
+                        <span>{moment(blog.publish_date).format('DD-MM-YYYY')}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
-                        <span>{article.reading_time} دقائق للقراءة</span>
+                        <span>{blog.reading_time} دقائق للقراءة</span>
                       </div>
                     </div>
                     
                     <h3 className="text-xl font-bold mb-3 group-hover:text-amber-500 transition-colors line-clamp-2">
-                      {article.title}
+                      {blog.name}
                     </h3>
                     
-                    <p className="text-gray-600 mb-4 line-clamp-3">{article.excerpt}</p>
+                    <p className="text-gray-600 mb-4 line-clamp-3">{blog.short}</p>
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Image
-                          src={article.author.image || "/placeholder.svg"}
-                          alt={article.author.name}
+                          src={blog.user.logo || "/placeholder.svg"}
+                          alt={blog.user.name}
                           width={32}
                           height={32}
                           className="w-8 h-8 rounded-full object-cover"
                         />
-                        <span className="text-sm font-medium">{article.author.name}</span>
+                        <span className="text-sm font-medium">{blog.user.name}</span>
                       </div>
                     </div>
                   </div>
@@ -119,7 +127,9 @@ export function BlogsGrid() {
             ))}
           </AnimatePresence>
         </div>
-        {filteredArticles.length === 0 && (
+          )
+        }
+        {response?.data.length === 0 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-12 flex flex-col items-center">
             <div className="p-4 flex items-center justify-center rounded-full bg-gray-200">
               <Newspaper className="w-14 h-14 text-gray-500" />

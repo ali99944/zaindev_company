@@ -5,10 +5,19 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Star, Award, Shield } from 'lucide-react'
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import HeroData from "@/src/types/sections/hero-data"
 // import { StatCounter } from "@/components/stat-counter"
 
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null)
+  const { data: heroData } = useGetQuery<HeroData>({
+    url: 'full-data/home/key',
+    key: ['full-data/home/key']
+  })
+
+  console.log(heroData);
+  
 
   const constructionFeatures = [
     { icon: <Award className="w-5 h-5" />, text: "خبرة أكثر من 15 عام" },
@@ -107,7 +116,7 @@ export function HeroSection() {
                   transition={{ delay: 0.6, duration: 0.8 }}
                   className="inline-block text-amber-500 mb-2"
                 >
-                  زين التنموية
+                  {heroData?.data.name}
                 </motion.span>
                 <br />
                 <motion.span 
@@ -116,7 +125,7 @@ export function HeroSection() {
                   transition={{ delay: 0.8, duration: 0.8 }}
                   className="inline-block bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent"
                 >
-                  نبني رؤية الغد اليوم
+                  {heroData?.data.sub_name}
                 </motion.span>
               </h1>
               <motion.p
@@ -125,8 +134,7 @@ export function HeroSection() {
                 transition={{ delay: 1, duration: 0.8 }}
                 className="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto lg:mr-0 lg:ml-auto"
               >
-                شركة رائدة في مجال المقاولات والتطوير في المملكة العربية السعودية. نقدم التميز في خدمات المقاولات والصيانة
-                والخدمات المتخصصة
+                {heroData?.data.description}
               </motion.p>
             </motion.div>
 
@@ -230,7 +238,7 @@ export function HeroSection() {
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <Image
-                    src="https://img.freepik.com/free-photo/crop-architect-opening-blueprint_23-2147710985.jpg"
+                    src={heroData?.data.logo ?? ''}
                     alt="مشروع بناء حديث"
                     width={600}
                     height={400}

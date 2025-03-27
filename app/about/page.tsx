@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { AboutHero } from "./components/about-hero";
 import { AboutValues } from "./components/about-values";
 import { AboutTeam } from "./components/about-team";
-import { AboutAchievements } from "./components/about-achievments";
+import { AboutStats } from "./components/about-stats";
 import { AboutTestimonials } from "./components/about-testimonials";
+import { AboutClients } from "./components/about-clients";
+import { AboutCta } from "./components/about-cta";
+import { AboutStory } from "./components/about-story";
 
 export const metadata: Metadata = {
   title: 'من نحن - مؤسسة سعودية رائدة في المقاولات والتكييف وإدارة المشاريع',
@@ -16,10 +19,13 @@ export default async function Page() {
   return (
     <>
       <AboutHero />
+      <AboutStory />
       <AboutValues />
-      <AboutTeam />
-      <AboutAchievements />
+      <AboutStats />
+      <AboutClients />
+      <AboutCta />
       <AboutTestimonials />
+      <AboutTeam />
     </>
   )
 }

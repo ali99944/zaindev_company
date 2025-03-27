@@ -6,7 +6,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
-import { ProjectImage } from "@/src/data/projects"
+import { ProjectImage } from "@/src/types/project"
 
 export function ProjectGallery({ images }: { images: ProjectImage[] }) {
   const [lightboxOpen, setLightboxOpen] = useState(false)

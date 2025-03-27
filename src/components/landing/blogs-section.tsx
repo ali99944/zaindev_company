@@ -37,7 +37,7 @@ const articles = [
   }
 ]
 
-export function ArticlesSection() {
+export function BlogsSection() {
   return (
     <section className="py-20 relative overflow-hidden">
       {/* Background Pattern */}

@@ -1,21 +1,18 @@
 "use client"
 
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import Partner from "@/src/types/partner"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { LinesLoader } from "../common/loaders"
 
-// Sample partner logos - replace with actual partner logos
-const partners = [
-  { name: "شركة الإنشاءات السعودية", logo: "https://img.freepik.com/free-vector/indonesian-halal-logo-new-branding-2022_17005-1495.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid" },
-  { name: "مجموعة البناء المتكاملة", logo: "https://img.freepik.com/free-vector/abstract-logo-flame-shape_1043-44.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid" },
-  { name: "شركة التطوير العقاري", logo: "https://img.freepik.com/free-vector/flat-design-vs-logo-design_23-2149482034.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid" },
-  { name: "مؤسسة الهندسة المعمارية", logo: "https://img.freepik.com/premium-vector/free-vector-blue-creative-financial-service-logo_883906-2282.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid" },
-  { name: "شركة المقاولات المتحدة", logo: "https://img.freepik.com/premium-vector/creative-logo-design-real-estate-company-vector-illustration_1253202-11231.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid" },
-  { name: "مجموعة الاستثمار العقاري", logo: "https://img.freepik.com/free-vector/global-corporation-logo_1043-184.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid" },
-  { name: "شركة التطوير العقاريds", logo: "https://img.freepik.com/free-vector/logo-with-blue-geometric-bars_1034-459.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid" },
-  { name: "مجموعة الهندسة المعمارية", logo: "https://img.freepik.com/free-vector/flat-design-ac-logo-design_23-2149482027.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid" },
-]
 
 export function PartnersSection() {
+  const { data: partners, isLoading: is_partners_loading } = useGetQuery<Partner[]>({
+    url: 'success-partners',
+    key: ['success-partners']
+  })
+
   return (
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -32,7 +29,15 @@ export function PartnersSection() {
         </motion.div>
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-          {partners.map((partner, index) => (
+          {
+            is_partners_loading && (
+              <div className="col-span-2 md:col-span-3 lg:col-span-4">
+                <LinesLoader lines={4} />
+                <LinesLoader lines={4} className="mt-8" />
+              </div>
+            )
+          }
+          {partners?.data.map((partner, index) => (
             <motion.div
               key={partner.name}
               initial={{ opacity: 0, y: 20 }}

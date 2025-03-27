@@ -8,6 +8,7 @@ import { Navbar } from '@/src/components/common/navbar'
 import { Footer } from '@/src/components/common/footer'
 import FloatingWhatsAppButton from '@/src/components/common/floating-whatsapp-button'
 import ReactQueryProvider from '@/src/providers/query-providers'
+import { ChatWidget } from '@/src/components/common/support-widget'
 
 const arabic = Tajawal({ 
   subsets: ['arabic'],
@@ -34,6 +35,7 @@ export default function RootLayout({
             {children}
             <Footer />
             <FloatingWhatsAppButton />
+            <ChatWidget />
         </ReactQueryProvider>
     </body>
     </html>

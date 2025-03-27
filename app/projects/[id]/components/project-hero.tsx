@@ -3,10 +3,20 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Calendar, MapPin, User } from 'lucide-react'
-import { categories, Project } from "@/src/data/projects"
 import { BlueprintGrid } from "@/src/components/common/blueprint-grid-pattern"
+import Project from "@/src/types/project"
+import ProjectType from "@/src/types/project-type"
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import { LinesLoader } from "@/src/components/common/loaders"
 
 export function ProjectHero({ project }: { project: Project }) {
+  
+
+  const { data: project_types, isLoading: is_project_types_loading } = useGetQuery<ProjectType[]>({
+    url: 'project-types',
+    key: ['project-types']
+  })
+  
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
         <BlueprintGrid opacity={0.3} />
@@ -18,8 +28,13 @@ export function ProjectHero({ project }: { project: Project }) {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-flex items-center px-4 py-2 bg-amber-500/10 rounded-full mb-6">
+              {
+                is_project_types_loading && (
+                  <LinesLoader lines={3} />
+                )
+              }
               <span className="text-amber-500 text-sm font-medium">
-                {categories.find(c => c.id === project.category)?.label || project.project_type}
+                {project_types?.data.find(c => c.name === project.project_type)?.name || project.project_type}
               </span>
             </div>
             
@@ -32,14 +47,14 @@ export function ProjectHero({ project }: { project: Project }) {
             </p>
             
             <div className="flex flex-wrap gap-6">
-              {project.completion_year && (
+              {project.details.completion_date && (
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-500">
                     <Calendar className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-sm text-gray-500">سنة الإنجاز</span>
-                    <p className="font-medium">{project.completion_year}</p>
+                    <p className="font-medium">{project.details.completion_date}</p>
                   </div>
                 </div>
               )}
@@ -78,23 +93,12 @@ export function ProjectHero({ project }: { project: Project }) {
           >
             <div className="absolute -inset-4 bg-amber-500/20 rounded transform rotate-3"></div>
             <div className="relative rounded overflow-hidden shadow-lg">
-              {project.images && project.images.length > 0 ? (
-                <Image
-                  src={project.images[0].image || "/placeholder.svg"}
-                  alt={project.images[0].alt || project.name}
-                  width={600}
-                  height={450}
-                  className="w-full h-[450px] object-cover"
-                />
-              ) : (
-                <Image
-                  src="/placeholder.svg?height=450&width=600"
-                  alt={project.name}
-                  width={600}
-                  height={450}
-                  className="w-full h-[450px] object-cover"
-                />
-              )}
+            <Image
+                        src={project.image || '/placeholder.svg?height=300&width=400'}
+                        alt={project.name}
+                        fill
+                        className="w-full h-full object-cover"
+                      />
             </div>
           </motion.div>
         </div>

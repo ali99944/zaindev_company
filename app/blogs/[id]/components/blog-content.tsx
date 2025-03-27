@@ -1,18 +1,18 @@
 "use client"
 
-import { Article } from "@/src/data/articles"
+import Blog from "@/src/types/blog"
 import { motion } from "framer-motion"
 import { Facebook, Twitter, Linkedin, Link2 } from "lucide-react"
 import { useState } from "react"
 import Markdown from 'react-markdown'
 
 
-export function ArticleContent({ article }: { article: Article }) {
+export function BlogContent({ blog }: { blog: Blog }) {
   const [copied, setCopied] = useState(false)
 
   // Function to copy article URL to clipboard
   const copyToClipboard = () => {
-    const url = window.location.href
+    const url = location.href
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
@@ -34,7 +34,7 @@ export function ArticleContent({ article }: { article: Article }) {
             >
               <button
                 onClick={() =>
-                  window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`, "_blank")
+                  open(`https://www.facebook.com/sharer/sharer.php?u=${location.href}`, "_blank")
                 }
                 className="w-10 h-10 rounded-full bg-gray-100 hover:bg-blue-100 flex items-center justify-center transition-colors"
                 aria-label="Share on Facebook"
@@ -44,8 +44,8 @@ export function ArticleContent({ article }: { article: Article }) {
 
               <button
                 onClick={() =>
-                  window.open(
-                    `https://twitter.com/intent/tweet?url=${window.location.href}&text=${article.title}`,
+                  open(
+                    `https://twitter.com/intent/tweet?url=${location.href}&text=${blog.name}`,
                     "_blank",
                   )
                 }
@@ -57,8 +57,8 @@ export function ArticleContent({ article }: { article: Article }) {
 
               <button
                 onClick={() =>
-                  window.open(
-                    `https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}&title=${article.title}`,
+                  open(
+                    `https://www.linkedin.com/shareArticle?mini=true&url=${location.href}&title=${blog.name}`,
                     "_blank",
                   )
                 }
@@ -90,7 +90,7 @@ export function ArticleContent({ article }: { article: Article }) {
               className="flex-1"
             >
               <Markdown>
-                {article.content}
+                {blog.description}
               </Markdown>
             </motion.div>
           </div>

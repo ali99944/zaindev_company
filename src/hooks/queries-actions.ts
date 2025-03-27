@@ -10,6 +10,13 @@ import {
 import { AxiosError } from "axios";
 import { useAxios } from "./axios";
 
+// Generic type for response data structure
+export type ApiData<T> = {
+  data: T;
+  limit: number;
+  page: number;
+  total: number;
+};
 
 export type TApiError = {
   data: string;
@@ -37,7 +44,7 @@ interface QueryProps<TData> {
   key: QueryKey;
   url: string;
   options?: Omit<
-    UseQueryOptions<TData, Error>,
+    UseQueryOptions<ApiData<TData>, Error>,
     "queryKey" | "queryFn"
   >;
   onErrorCallback?: (error: AxiosError) => void;
@@ -61,19 +68,19 @@ export function useGetQuery<TData = unknown>({
   key,
   url,
   options = {},
-}: QueryProps<TData>): UseQueryResult<TData, Error> {
+}: QueryProps<TData>): UseQueryResult<ApiData<TData>, Error> {
   const axios = useAxios();
 
-  const queryOptions: UseQueryOptions<TData, Error> = {
+  const queryOptions: UseQueryOptions<ApiData<TData>, Error> = {
     queryKey: key,
     queryFn: async () => {
-      const response = await axios.get<TData>(url);
+      const response = await axios.get<ApiData<TData>>(url);
       return response.data;
     },
     ...options,
   };
 
-  return useQuery<TData>(queryOptions);
+  return useQuery<ApiData<TData>>(queryOptions);
 }
 
 function useCustomMutation<TData, TVariables>(
@@ -127,10 +134,3 @@ export function useMutationAction<TData = unknown, TVariables = unknown>(
     props
   );
 }
-
-export type ApiData<T> = {
-  data: T;
-  limit: number;
-  page: number;
-  total: number;
-};

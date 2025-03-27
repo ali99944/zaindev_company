@@ -1,6 +1,6 @@
 "use client"
 
-import { Project } from "@/src/data/projects"
+import Project from "@/src/types/project"
 import { motion } from "framer-motion"
 
 export function ProjectDescription({ project }: { project: Project }) {

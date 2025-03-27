@@ -3,25 +3,17 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { useRouter, useSearchParams } from "next/navigation"
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import ServiceCategory from "@/src/types/service-category"
 
-interface Category {
-  id: string
-  name: string
-  count: number
-}
-
-interface ServicesCategoriesProps {
-  categories: Category[]
-}
-
-export function ServicesCategories({ categories }: ServicesCategoriesProps) {
+export function ServicesCategories() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const currentCategory = searchParams.get("category") || "all"
 
-  const [activeCategory, setActiveCategory] = useState(currentCategory)
+  const [activeCategory, setActiveCategory] = useState<string | number>(currentCategory)
 
-  const handleCategoryChange = (categoryId: string) => {
+  const handleCategoryChange = (categoryId: number | string) => {
     setActiveCategory(categoryId)
 
     // Update URL with the selected category
@@ -29,17 +21,22 @@ export function ServicesCategories({ categories }: ServicesCategoriesProps) {
     if (categoryId === "all") {
       params.delete("category")
     } else {
-      params.set("category", categoryId)
+      params.set("category", categoryId.toString())
     }
 
     router.push(`/services?${params.toString()}`)
   }
 
+  const { data: service_categories } = useGetQuery<ServiceCategory[]>({
+    url: 'services-categories',
+    key: ['services-categories']
+  })
+
   return (
     <section className="py-8 bg-white border-b border-gray-100">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-center gap-4">
-          {categories.map((category) => (
+          {service_categories?.data.map((category) => (
             <motion.button
               key={category.id}
               onClick={() => handleCategoryChange(category.id)}
@@ -58,7 +55,7 @@ export function ServicesCategories({ categories }: ServicesCategoriesProps) {
                   activeCategory === category.id ? "bg-white text-black" : "bg-gray-200 text-gray-700"
                 }`}
               >
-                {category.count}
+                {0}
               </span>
             </motion.button>
           ))}

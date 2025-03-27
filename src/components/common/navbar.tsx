@@ -74,12 +74,12 @@ export function Navbar() {
                 اتصل بنا
               </Link>
               <Link 
-                href="/privacy-policy" 
+                href="/consultations" 
                 className={`text-sm font-medium hover:text-amber-500 transition-colors ${
                   isScrolled ? "text-gray-700" : "text-black"
                 }`}
               >
-                سياسة خصوصية
+                الاستشارات
               </Link>
               <Link 
                 href="/zaindev-app" 
@@ -183,11 +183,11 @@ export function Navbar() {
                     اتصل بنا
                   </Link>
                   <Link 
-                    href="/privacy-policy" 
+                    href="/consultations" 
                     className="text-lg font-medium text-gray-700 hover:text-amber-500 transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    سياسة خصوصية
+                    الاستشارات
                   </Link>
                   <Link 
                     href="/zaindev-app" 

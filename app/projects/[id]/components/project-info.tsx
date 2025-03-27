@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { CheckCircle } from "lucide-react"
-import { Project } from "@/src/data/projects"
+import Project from "@/src/types/project"
 
 export function ProjectInfo({ project }: { project: Project }) {
   // Project features - these would typically come from the project data
@@ -44,7 +44,7 @@ export function ProjectInfo({ project }: { project: Project }) {
               <div className="bg-white rounded p-4">
                 <h3 className="text-xl font-bold mb-3">عن العميل</h3>
                 <div className="flex items-center gap-4">
-                  {project.infologo ? (
+                  {project.logo ? (
                     <Image
                       src={'https://img.freepik.com/free-vector/indonesian-halal-logo-new-branding-2022_17005-1495.jpg?ga=GA1.1.259795667.1741285641&semt=ais_authors_boost'}
                       alt={project.client}
@@ -73,9 +73,9 @@ export function ProjectInfo({ project }: { project: Project }) {
             transition={{ delay: 0.2 }}
             className="relative"
           >
-            {project.images && project.images.length > 1 ? (
+            {project.project_images && project.project_images.length > 1 ? (
               <div className="grid grid-cols-2 gap-4">
-                {project.images.slice(1, 5).map((image, index) => (
+                {project.project_images.slice(1, 5).map((image, index) => (
                   <div key={image.id} className="relative overflow-hidden rounded">
                     <Image
                       src={image.image || "/placeholder.svg"}
@@ -90,7 +90,7 @@ export function ProjectInfo({ project }: { project: Project }) {
             ) : (
               <div className="relative overflow-hidden rounded">
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src={project.image || '/placeholder.svg?height=400&width=600'}
                   alt={project.name}
                   width={600}
                   height={400}

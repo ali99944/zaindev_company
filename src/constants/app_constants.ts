@@ -1,3 +1,3 @@
-export const apiUrl = "https://dashboard.zaindev.com.sa/api/v1"
+export const apiUrl = "https://services.zaindev.com.sa/api/v2"
 
-export const storageUrl = "https://dashboard.zaindev.com.sa/public"
+export const storageUrl = "https://services.zaindev.com.sa/public"

@@ -4,28 +4,22 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { MapPin, CheckCircle } from "lucide-react"
 import Link from "next/link"
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import City from "@/src/types/city"
+import { LinesLoader } from "./loaders"
 
-// Define city data with coverage status
-const cities = [
-  { id: 1, name: "الرياض", covered: true, lat: 24.7136, lng: 46.6753 },
-  { id: 2, name: "جدة", covered: true, lat: 21.4858, lng: 39.1925 },
-  { id: 3, name: "مكة المكرمة", covered: true, lat: 21.3891, lng: 39.8579 },
-  { id: 4, name: "المدينة المنورة", covered: true, lat: 24.5247, lng: 39.5692 },
-  { id: 5, name: "الدمام", covered: true, lat: 26.4207, lng: 50.0888 },
-  { id: 6, name: "الخبر", covered: true, lat: 26.2172, lng: 50.1971 },
-  { id: 7, name: "الطائف", covered: false, lat: 21.2886, lng: 40.4164 },
-  { id: 8, name: "بريدة", covered: false, lat: 26.3292, lng: 43.9708 },
-  { id: 9, name: "تبوك", covered: false, lat: 28.3998, lng: 36.5714 },
-  { id: 10, name: "أبها", covered: false, lat: 18.2164, lng: 42.5053 },
-  { id: 11, name: "نجران", covered: false, lat: 17.4922, lng: 44.1277 },
-  { id: 12, name: "جازان", covered: false, lat: 16.8892, lng: 42.5611 },
-]
-
-// Group cities by coverage status
-const coveredCities = cities.filter((city) => city.covered)
-const upcomingCities = cities.filter((city) => !city.covered)
 
 export function ServiceCoverageMap() {
+  const { data: available_cities, isLoading: is_available_cities_loading } = useGetQuery<City[]>({
+    url: 'cities-avaliable',
+    key: ['cities-avaliable']
+  })
+
+  const { data: unavailable_cities, isLoading: is_unavailable_cities_loading } = useGetQuery<City[]>({
+    url: 'cities-un-avaliable',
+    key: ['cities-un-avaliable']
+  })
+
   return (
     <section className="py-20 bg-gray-50 relative overflow-hidden">
       {/* Background Pattern */}
@@ -91,7 +85,14 @@ export function ServiceCoverageMap() {
               </h3>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {coveredCities.map((city, index) => (
+                {
+                  is_available_cities_loading && (
+                    <div className="col-span-2 md:col-span-3 lg:col-span-4">
+                      <LinesLoader lines={4} />
+                    </div>
+                  )
+                }
+                {available_cities?.data.map((city, index) => (
                   <motion.div
                     key={city.id}
                     initial={{ opacity: 0, y: 10 }}
@@ -121,7 +122,14 @@ export function ServiceCoverageMap() {
               </h3>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {upcomingCities.map((city, index) => (
+              {
+                  is_unavailable_cities_loading  && (
+                    <div className="col-span-2 md:col-span-3 lg:col-span-4">
+                      <LinesLoader lines={4} />
+                    </div>
+                  )
+                }
+                {unavailable_cities?.data.map((city, index) => (
                   <motion.div
                     key={city.id}
                     initial={{ opacity: 0, y: 10 }}

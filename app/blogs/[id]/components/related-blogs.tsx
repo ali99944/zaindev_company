@@ -4,16 +4,12 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { Calendar } from "lucide-react"
-import { Article } from "@/src/data/articles"
+import Blog from "@/src/types/blog"
+import moment from "moment"
 
-export function RelatedArticles({ articles }: { articles: Article[] }) {
-  if (!articles || articles.length === 0) return null
+export function RelatedBlogs({ blogs }: { blogs: Blog[] }) {
+  if (!blogs || blogs.length === 0) return null
 
-  // Format date function
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "long", day: "numeric" }
-    return new Date(dateString).toLocaleDateString("ar-SA", options)
-  }
 
   return (
     <section className="py-20">
@@ -29,27 +25,27 @@ export function RelatedArticles({ articles }: { articles: Article[] }) {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {articles.map((article, index) => (
+          {blogs.map((blog, index) => (
             <motion.div
-              key={article.id}
+              key={blog.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className="group bg-gray-50 rounded overflow-hidden"
             >
-              <Link href={`/blog/${article.id}`} className="block">
+              <Link href={`/blog/${blog.id}`} className="block">
                 <div className="relative h-60 overflow-hidden">
                   <Image
-                    src={article.featured_image || "/placeholder.svg"}
-                    alt={article.title}
+                    src={blog.image || "/placeholder.svg"}
+                    alt={blog.name}
                     width={400}
                     height={300}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-4 right-4">
                     <span className="inline-block px-3 py-1 bg-amber-500 text-white rounded-full text-xs font-medium">
-                      {article.category}
+                      {blog.category.name}
                     </span>
                   </div>
                 </div>
@@ -58,14 +54,14 @@ export function RelatedArticles({ articles }: { articles: Article[] }) {
                 <div className="p-6">
                   <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
                     <Calendar className="w-4 h-4" />
-                    <span>{formatDate(article.publish_date)}</span>
+                    <span>{moment(blog.created_at).format('YYYY-MM-DD')}</span>
                   </div>
 
                     <h3 className="text-xl font-bold mb-3 transition-colors line-clamp-2">
-                        {article.title}
+                        {blog.name}
                     </h3>
 
-                  <p className="text-gray-600 line-clamp-2">{article.excerpt}</p>
+                  <p className="text-gray-600 line-clamp-2">{blog.description}</p>
                 </div>
             </motion.div>
           ))}

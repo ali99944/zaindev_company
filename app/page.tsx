@@ -1,6 +1,6 @@
 import { HeroSection } from "@/src/components/landing/hero-section";
 import { AboutSection } from "@/src/components/landing/about-section";
-import { ArticlesSection } from "@/src/components/landing/articles-section";
+import { BlogsSection } from "@/src/components/landing/blogs-section";
 import { CtaSection } from "@/src/components/landing/cta-section";
 import { PartnersSection } from "@/src/components/landing/partners-section";
 import { PerfectPartnerSection } from "@/src/components/landing/perfect-partner-section";
@@ -24,7 +24,7 @@ export default async function Home() {
       <CtaSection />
       <MobileAppSection />
       <ProjectsSection />
-      <ArticlesSection />
+      <BlogsSection />
     </div>
   )
 }

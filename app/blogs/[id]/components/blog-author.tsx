@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Twitter, Linkedin, Mail } from "lucide-react"
-import { Author } from "@/src/data/articles"
+import Blog from "@/src/types/blog"
+import { Linkedin, Mail, Twitter } from "lucide-react"
 
-export function ArticleAuthor({ author }: { author: Author }) {
+export function BlogAuthor({ blog }: { blog: Blog }) {
   return (
     <section className="py-12 bg-gray-100">
       <div className="container mx-auto px-4">
@@ -18,8 +18,8 @@ export function ArticleAuthor({ author }: { author: Author }) {
           <div className="p-8 flex flex-col md:flex-row gap-8 items-center md:items-start">
             <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0">
               <Image
-                src={author.image || "/placeholder.svg"}
-                alt={author.name}
+                src={blog.image || "/placeholder.svg"}
+                alt={blog.name}
                 width={128}
                 height={128}
                 className="w-full h-full object-cover"
@@ -27,40 +27,40 @@ export function ArticleAuthor({ author }: { author: Author }) {
             </div>
 
             <div className="flex-1 text-center md:text-right">
-              <h3 className="text-2xl font-bold mb-2">{author.name}</h3>
-              <p className="text-amber-500 font-medium mb-4">{author.position}</p>
-              <p className="text-gray-600 mb-6 leading-relaxed">{author.bio}</p>
+              <h3 className="text-2xl font-bold mb-2">{blog.name}</h3>
+              <p className="text-amber-500 font-medium mb-4">{blog.user.position}</p>
+              <p className="text-gray-600 mb-6 leading-relaxed">{'blog.user.bio'}</p>
 
               <div className="flex items-center justify-center md:justify-start gap-4">
-                {author.social.twitter && (
+                {(
                   <a
-                    href={author.social.twitter}
+                  href={`mailto:${'alitarek99944@gmail.com'}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full bg-gray-100 hover:bg-sky-100 flex items-center justify-center transition-colors"
-                    aria-label={`${author.name} على تويتر`}
+                    aria-label={`${blog.name} على تويتر`}
                   >
                     <Twitter className="w-5 h-5 text-sky-500" />
                   </a>
                 )}
 
-                {author.social.linkedin && (
+                {(
                   <a
-                    href={author.social.linkedin}
+                  href={`mailto:${'alitarek99944@gmail.com'}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full bg-gray-100 hover:bg-blue-100 flex items-center justify-center transition-colors"
-                    aria-label={`${author.name} على لينكد إن`}
+                    aria-label={`${blog.name} على لينكد إن`}
                   >
                     <Linkedin className="w-5 h-5 text-blue-700" />
                   </a>
                 )}
 
-                {author.social.email && (
+                {(
                   <a
-                    href={`mailto:${author.social.email}`}
+                    href={`mailto:${'alitarek99944@gmail.com'}`}
                     className="w-10 h-10 rounded-full bg-gray-100 hover:bg-amber-100 flex items-center justify-center transition-colors"
-                    aria-label={`راسل ${author.name}`}
+                    aria-label={`راسل ${blog.name}`}
                   >
                     <Mail className="w-5 h-5 text-amber-500" />
                   </a>

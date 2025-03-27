@@ -1,4 +1,3 @@
-import { getProjectById, getRelatedProjects } from "@/src/data/projects"
 import { ProjectHero } from "./components/project-hero"
 import { ProjectInfo } from "./components/project-info"
 import { ProjectDescription } from "./components/project-description"
@@ -6,11 +5,25 @@ import { CtaSection } from "@/src/components/landing/cta-section"
 import { ProjectGallery } from "./components/project-gallery"
 import { RelatedProjects } from "./components/related-projects"
 import Link from "next/link"
+import { getRelatedProjects, getSingleProject } from "@/src/server-actions/project"
+import { Metadata } from "next"
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const project = await getSingleProject((await params).id)
+  
+  return {
+    title: project.seo_title ?? project.name,
+    description: project.seo_description || project.description,
+    keywords: project.seo_keywords || [project.name, project.description, project.short]
+  }
+}
+
 
 export default async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
-  const projectId = parseInt((await params).id)
-  const project = getProjectById(projectId)
-  const relatedProjects = getRelatedProjects(projectId)
+
+  const project = await getSingleProject((await params).id)
+
+  const related_projects = await getRelatedProjects(project.project_type)
   
   if (!project) {
     return (
@@ -31,8 +44,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
       <ProjectHero project={project} />
       <ProjectInfo project={project} />
       <ProjectDescription project={project} />
-      <ProjectGallery images={project.images} />
-      <RelatedProjects projects={relatedProjects} />
+      <ProjectGallery images={project.project_images} />
+      <RelatedProjects projects={related_projects} />
       <CtaSection />
     </main>
   )

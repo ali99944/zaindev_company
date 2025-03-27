@@ -13,9 +13,22 @@ import {
   Phone,
   MapPin,
 } from "lucide-react"
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import ConnectedWebsite from "@/src/types/connected-website"
+import PrivacyType from "@/src/types/privacy-type"
 
 
 export function Footer() {
+  const { data: connected_websites } = useGetQuery<ConnectedWebsite[]>({
+    url: 'connected-websites',
+    key: ['connected-websites']
+  })
+
+  const { data: privacies_types } = useGetQuery<PrivacyType[]>({
+    url: 'privacy-types',
+    key: ['privacy-types']
+  })
+
   return (
     <footer className="bg-gray-900 text-white relative overflow-hidden">
       {/* Main Footer */}
@@ -118,6 +131,14 @@ export function Footer() {
                     <span>اتصل بنا</span>
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/consultations"
+                    className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
+                  >
+                    <span>احصل علي استشارة</span>
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -159,14 +180,43 @@ export function Footer() {
               </ul>
             </div>
 
+            <div>
+              <h3 className="text-lg font-bold mb-6  ">مواقعنا الاخرى</h3>
+              {
+                connected_websites?.data.map((website) => (
+                  <Link
+                    key={website.id}
+                    href={website.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
+                  >
+                    {website.name}
+                  </Link>
+                ))
+              }
+            </div>
+
           </div>
         </div>
       </div>
 
       {/* Sub Footer */}
       <div className="border-t border-gray-800 py-8 relative z-10 bg-gray-950">
+                    {/* Policies */}
+                    <div className="flex items-center justify-center gap-6 text-sm mb-4 flex-wrap px-4" >
+              {
+                privacies_types?.data.map((p, index) => {
+                  return (
+                    <Link key={index} href={`/privacies/${p.id}`} className="text-gray-400 hover:text-amber-500 hover:underline transition-colors">
+                      {p.name}
+                    </Link>
+                  )
+                })
+              }
+            </div>
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <div className="flex justify-between gap-8 items-center">
             {/* Copyright */}
             <div className="text-center md:text-right">
               <p className="text-gray-400 text-sm">
@@ -174,18 +224,6 @@ export function Footer() {
               </p>
             </div>
 
-            {/* Policies */}
-            <div className="flex items-center justify-center gap-6 text-sm">
-              <Link href="/privacy" className="text-gray-400 hover:text-amber-500 hover:underline transition-colors">
-                سياسة الخصوصية
-              </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-amber-500 hover:underline transition-colors">
-                الشروط والأحكام
-              </Link>
-              <Link href="/refund" className="text-gray-400 hover:text-amber-500 hover:underline transition-colors">
-                سياسة الاسترجاع
-              </Link>
-            </div>
 
             {/* Developer Credit */}
             <div className="text-center md:text-left">
