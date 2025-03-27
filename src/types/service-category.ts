@@ -1,3 +1,5 @@
+import { Discount, Service, ServiceCategoryBack, ServiceCategoryFaq } from "./service"
+
 export interface ServiceCategoryDiscount {
     id: number
     name: string
@@ -15,8 +17,13 @@ interface ServiceCategory {
     seo_title: string
     seo_description: string
     seo_keywords: string
-
-    discount: ServiceCategoryDiscount
+    created_at: string
+    updated_at: string
+    discount: Discount | null
+    services: Service[]
+    services_categories_faqs: ServiceCategoryFaq[]
+    services_categories_backs: ServiceCategoryBack[]
+    services_categories: ServiceCategory
 }
 
 export default ServiceCategory

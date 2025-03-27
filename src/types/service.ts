@@ -41,16 +41,5 @@ export interface Service {
   name: string
   short: string
   logo: string
-  status: number
-  seo_title: string
-  seo_description: string
-  seo_keywords: string
-  created_at: string
-  updated_at: string
-  discount: Discount | null
-  services: Service[]
-  services_categories_faqs: ServiceCategoryFaq[]
-  services_categories_backs: ServiceCategoryBack[]
-  services_categories: ServiceCategory
 }
 

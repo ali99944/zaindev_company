@@ -4,18 +4,10 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { Building2 } from "lucide-react"
 import { BlueprintGrid } from "@/src/components/common/blueprint-grid-pattern"
+import ServiceCategory from "@/src/types/service-category"
 
 interface ServiceProps {
-  service: {
-    id: number
-    name: string
-    short: string
-    description: string
-    image: string
-    logo: string
-    svg: string
-    infologo: string
-  }
+  service: ServiceCategory
 }
 
 export function ServiceHero({ service }: ServiceProps) {

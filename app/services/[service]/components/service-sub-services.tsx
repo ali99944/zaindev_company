@@ -1,28 +1,15 @@
 "use client"
 
 import { formatRiyal } from "@/lib/format-riyal"
+import { Service } from "@/src/types/service"
+import ServiceCategory from "@/src/types/service-category"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 
-interface SubService {
-  id: number
-  services_id: number
-  logo: string | null
-  name: string
-  short: string
-  price: string
-  original_price: string
-  discount: string | null
-}
-
 interface ServiceSubServicesProps {
-  service: {
-    id: number
-    name: string
-    description: string
-  }
-  subServices: SubService[]
+  service: ServiceCategory
+  subServices: Service[]
 }
 
 export function ServiceSubServices({ service, subServices }: ServiceSubServicesProps) {
@@ -67,7 +54,7 @@ export function ServiceSubServices({ service, subServices }: ServiceSubServicesP
                       </h3>
                   </Link>
 
-                  <p className="text-amber-500">{formatRiyal(subService.price)}</p>
+                  <p className="text-amber-500">{formatRiyal('0')}</p>
                 </div>
                 <p className="text-gray-600 line-clamp-2">{subService.short}</p>
 

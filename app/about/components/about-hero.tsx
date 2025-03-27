@@ -4,8 +4,9 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowDown } from "lucide-react"
+import AboutUsData from "@/src/types/sections/about-us"
 
-export function AboutHero() {
+export function AboutHero({ page_data }: { page_data: AboutUsData }) {
   return (
     <section className="relative pt-24 pb-16 overflow-hidden">
       {/* Background Pattern */}
@@ -49,20 +50,19 @@ export function AboutHero() {
             className="lg:order-2"
           >
             <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-500/30 to-amber-500/40 rounded-full backdrop-blur-sm mb-6 border border-amber-500/20">
-              <span className="text-black text-sm font-medium">تعرف على زين التنموية</span>
+              <span className="text-black text-sm font-medium">{page_data.name}</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="text-amber-500">من نحن</span>
+              <span className="text-amber-500">{page_data.name}</span>
               <br />
               <span className="bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-                شركة رائدة في مجال المقاولات والتطوير
+              شركة رائدة في مجال المقاولات والتطوير
               </span>
             </h1>
 
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              زين التنموية هي شركة رائدة في مجال المقاولات والتطوير في المملكة العربية السعودية. نحن نفخر بتقديم خدمات
-              عالية الجودة وحلول مبتكرة لعملائنا، مع التركيز على الاستدامة والتميز في كل مشروع.
+              {page_data.description}
             </p>
 
             <div className="flex flex-wrap gap-4">
