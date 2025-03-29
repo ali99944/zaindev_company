@@ -2,59 +2,32 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { CheckCircle, X } from 'lucide-react'
+import { CheckCircle, X } from "lucide-react"
 import Link from "next/link"
-
-// Sample consultation packages data
-const packages = [
-  {
-    id: 1,
-    name: "الباقة الأساسية",
-    price: 499,
-    type: "monthly",
-    features: [
-      { name: "استشارة شهرية", value: "جلسة واحدة", description: "جلسة استشارية مع أحد خبرائنا" },
-      { name: "مدة الجلسة", value: "ساعة واحدة", description: "مدة كل جلسة استشارية" },
-      { name: "تقرير مفصل", value: "نعم", description: "تقرير مفصل بعد كل جلسة" },
-      { name: "دعم عبر البريد الإلكتروني", value: "نعم", description: "دعم مستمر عبر البريد الإلكتروني" },
-      { name: "زيارات ميدانية", value: "لا", description: "زيارات للموقع من قبل الاستشاريين" },
-      { name: "مراجعة المخططات", value: "لا", description: "مراجعة وتدقيق المخططات الهندسية" }
-    ]
-  },
-  {
-    id: 2,
-    name: "الباقة المتقدمة",
-    price: 999,
-    type: "monthly",
-    features: [
-      { name: "استشارة شهرية", value: "جلستان", description: "جلسات استشارية مع أحد خبرائنا" },
-      { name: "مدة الجلسة", value: "ساعتان", description: "مدة كل جلسة استشارية" },
-      { name: "تقرير مفصل", value: "نعم", description: "تقرير مفصل بعد كل جلسة" },
-      { name: "دعم عبر البريد الإلكتروني", value: "نعم", description: "دعم مستمر عبر البريد الإلكتروني" },
-      { name: "زيارات ميدانية", value: "زيارة واحدة", description: "زيارة للموقع من قبل الاستشاريين" },
-      { name: "مراجعة المخططات", value: "نعم", description: "مراجعة وتدقيق المخططات الهندسية" }
-    ]
-  },
-  {
-    id: 3,
-    name: "الباقة الاحترافية",
-    price: 1999,
-    type: "monthly",
-    features: [
-      { name: "استشارة شهرية", value: "أربع جلسات", description: "جلسات استشارية مع أحد خبرائنا" },
-      { name: "مدة الجلسة", value: "ساعتان", description: "مدة كل جلسة استشارية" },
-      { name: "تقرير مفصل", value: "نعم", description: "تقرير مفصل بعد كل جلسة" },
-      { name: "دعم عبر البريد الإلكتروني", value: "نعم", description: "دعم مستمر عبر البريد الإلكتروني" },
-      { name: "زيارات ميدانية", value: "زيارتان", description: "زيارات للموقع من قبل الاستشاريين" },
-      { name: "مراجعة المخططات", value: "نعم", description: "مراجعة وتدقيق المخططات الهندسية" },
-      { name: "استشارات طارئة", value: "نعم", description: "إمكانية طلب استشارات طارئة" },
-      { name: "تقييم المقاولين", value: "نعم", description: "المساعدة في تقييم واختيار المقاولين" }
-    ]
-  }
-]
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import type ConsultationPackage from "@/src/types/consultation-package"
+import GridLoader from "@/src/components/loaders/grid-loader"
+import { ConsultationSubscriptionModal } from "./consultation-subscription-modal"
 
 export function ConsultationPackages() {
   const [packageType, setPackageType] = useState<"monthly" | "annualy">("monthly")
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedPackage, setSelectedPackage] = useState<ConsultationPackage | null>(null)
+
+  const { data: packages, isLoading: is_packages_loading } = useGetQuery<ConsultationPackage[]>({
+    url: "consultation-packages",
+    key: ["consultation-packages"],
+  })
+
+
+  const handlePackageSubscription = (pkg: ConsultationPackage) => {
+    setSelectedPackage(pkg)
+    setIsModalOpen(true)
+  }
+
+  if (is_packages_loading) {
+    return <GridLoader />
+  }
 
   return (
     <section id="consultation-packages" className="py-20 bg-gray-50 relative overflow-hidden">
@@ -70,7 +43,7 @@ export function ConsultationPackages() {
           }}
         ></div>
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -82,7 +55,7 @@ export function ConsultationPackages() {
           <p className="text-gray-600 max-w-3xl mx-auto">
             اختر الباقة التي تناسب احتياجاتك واستفد من خبرة فريقنا المتخصص في مجال البناء والتطوير العقاري
           </p>
-          
+
           <div className="flex items-center justify-center mt-8">
             <div className="bg-white rounded-full p-1 border border-gray-200 inline-flex">
               <button
@@ -108,9 +81,9 @@ export function ConsultationPackages() {
             </div>
           </div>
         </motion.div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {packages.map((pkg, index) => (
+          {packages?.data.map((pkg, index) => (
             <motion.div
               key={pkg.id}
               initial={{ opacity: 0, y: 30 }}
@@ -123,21 +96,21 @@ export function ConsultationPackages() {
                 <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
                 <div className="flex items-end gap-2 mb-4">
                   <span className="text-4xl font-bold text-amber-500">
-                    {packageType === "monthly" ? pkg.price : pkg.price * 10}
+                    {packageType === "monthly" ? pkg.price : pkg.year_price}
                   </span>
                   <span className="text-gray-600 mb-1">ريال / {packageType === "monthly" ? "شهرياً" : "سنوياً"}</span>
                 </div>
-                <p className="text-gray-600 text-sm mb-6">
+                {/* <p className="text-gray-600 text-sm mb-6">
                   {pkg.id === 1 && "مناسبة للمشاريع الصغيرة والاستشارات البسيطة"}
                   {pkg.id === 2 && "مثالية للمشاريع المتوسطة التي تحتاج إلى متابعة دورية"}
                   {pkg.id === 3 && "الحل الأمثل للمشاريع الكبيرة التي تتطلب دعماً مستمراً"}
-                </p>
+                </p> */}
               </div>
-              
+
               <div className="p-6 bg-white">
                 <h4 className="font-bold mb-4 text-gray-800">المميزات</h4>
                 <ul className="space-y-4">
-                  {pkg.features.map((feature) => (
+                  {pkg.packages_features.map((feature) => (
                     <li key={feature.name} className="flex items-start gap-3">
                       {feature.value === "لا" ? (
                         <X className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
@@ -152,19 +125,17 @@ export function ConsultationPackages() {
                   ))}
                 </ul>
 
-                <Link
-                  href="/contact"
+                <button
+                  onClick={() => handlePackageSubscription(pkg)}
                   className="block w-full mt-4 bg-amber-500 hover:bg-amber-600 text-black font-medium py-2 rounded text-center transition-colors"
                 >
                   اشترك الآن
-                </Link>
+                </button>
               </div>
             </motion.div>
           ))}
-
-          
         </div>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -183,6 +154,14 @@ export function ConsultationPackages() {
           </Link>
         </motion.div>
       </div>
+
+      <ConsultationSubscriptionModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        selectedPackage={selectedPackage}
+        packageType={packageType}
+      />
     </section>
   )
 }
+

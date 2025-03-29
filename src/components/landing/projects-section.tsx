@@ -1,56 +1,31 @@
 "use client"
 
-import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Building2, Home, Building, Warehouse } from 'lucide-react'
+import { ArrowLeft, } from 'lucide-react'
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import Project from "@/src/types/project"
+import GridLoader from "../loaders/grid-loader"
+import ProjectType from "@/src/types/project-type"
 
-// Sample projects data
-const projects = [
-  {
-    id: 1,
-    title: "برج الأفق التجاري",
-    category: "commercial",
-    image: "https://img.freepik.com/free-photo/modern-business-buildings_1127-3169.jpg",
-    description: "مشروع برج تجاري متكامل في قلب مدينة الرياض، يتميز بتصميم عصري وخدمات متكاملة",
-  },
-  {
-    id: 2,
-    title: "مجمع الواحة السكني",
-    category: "residential",
-    image: "https://img.freepik.com/free-photo/plan-project-architecture-blueprint-drawing-concept_53876-13746.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid",
-    description: "مجمع سكني فاخر يضم 120 وحدة سكنية متنوعة مع مساحات خضراء ومرافق ترفيهية",
-  },
-  {
-    id: 3,
-    title: "مستودعات الخليج اللوجستية",
-    category: "industrial",
-    image: "https://img.freepik.com/free-photo/warehouse-interior-logistics-transportation-industry_93675-129610.jpg",
-    description: "مجمع مستودعات حديث بمساحة 50,000 متر مربع مجهز بأحدث التقنيات اللوجستية",
-  },
-  {
-    id: 4,
-    title: "فيلا الريحان الخاصة",
-    category: "residential",
-    image: "https://img.freepik.com/free-photo/3d-rendering-modern-dining-room-living-room-with-luxury-decor_105762-2000.jpg",
-    description: "فيلا سكنية فاخرة بتصميم عصري ومساحات داخلية وخارجية مميزة",
-  }
-]
 
-const categories = [
-  { id: "all", label: "جميع المشاريع", icon: <Building2 className="w-4 h-4" /> },
-  { id: "residential", label: "سكني", icon: <Home className="w-4 h-4" /> },
-  { id: "commercial", label: "تجاري", icon: <Building className="w-4 h-4" /> },
-  { id: "industrial", label: "صناعي", icon: <Warehouse className="w-4 h-4" /> },
-]
+
 
 export function ProjectsSection() {
-  const [activeCategory] = useState("all")
+  const { data: projects, isLoading: is_projects_loading } = useGetQuery<Project[]>({
+    url: 'projects',
+    key: ['projects']
+  })
+
+  const { data: categories, isLoading: is_categories_loading } = useGetQuery<ProjectType[]>({
+    url: 'projects',
+    key: ['projects']
+  })
   
-  const filteredProjects = activeCategory === "all" 
-    ? projects 
-    : projects.filter(project => project.category === activeCategory)
+  if(is_projects_loading || is_categories_loading) {
+    return <GridLoader />
+  }
 
   return (
     <section className="py-20 bg-gray-50 relative overflow-hidden">
@@ -98,7 +73,7 @@ export function ProjectsSection() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <AnimatePresence mode="wait">
-            {filteredProjects.map((project, index) => (
+            {projects?.data.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -112,20 +87,20 @@ export function ProjectsSection() {
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src={project.image || "/placeholder.svg"}
-                      alt={project.title}
+                      alt={project.name}
                       width={400}
                       height={300}
                       className="w-full h-full object-cover transition-transform duration-300"
                     />
                     <div className="absolute top-4 right-4">
                       <span className="inline-block px-3 py-1 bg-amber-500 text-black rounded-full text-xs font-medium">
-                        {categories.find(c => c.id === project.category)?.label}
+                        {categories?.data.find(c => c.name === project.category_info)?.name}
                       </span>
                     </div>
                   </div>
                   
                   <div className="p-4">
-                    <h3 className="text-lg font-bold mb-2 group-hover:text-amber-500 transition-colors">{project.title}</h3>
+                    <h3 className="text-lg font-bold mb-2 group-hover:text-amber-500 transition-colors">{project.name}</h3>
                     <p className="text-gray-600 text-sm line-clamp-2">{project.description}</p>
                   </div>
                 </Link>

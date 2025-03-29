@@ -7,8 +7,11 @@ import { Bell, Calendar, CreditCard, FileText, MapPin, MessageSquare, Smartphone
 import { IPhoneFrame } from "../device-frames/iphone-frame"
 import { AppServiceDetailsMockup } from "../mockups/app-service-details"
 import { BlueprintGrid } from "./blueprint-grid-pattern"
+import { ZainDevelopmentApp } from "@/src/types/sections/future-projects-data"
 
-export function MobileAppSection() {
+export function MobileAppSection({ zaindev_app_data }: { zaindev_app_data: ZainDevelopmentApp }) {
+  console.log(zaindev_app_data);
+  
   return (
     <section className="py-20 relative overflow-hidden">
       {/* Background Pattern */}

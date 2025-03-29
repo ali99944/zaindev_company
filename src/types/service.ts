@@ -41,5 +41,7 @@ export interface Service {
   name: string
   short: string
   logo: string
+  image: string
+  price: string
 }
 

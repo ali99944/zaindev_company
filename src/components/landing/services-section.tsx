@@ -83,12 +83,12 @@ export function ServicesSection() {
             >
 
                 <div>
-                  <Link href={`/services/${service.id}`} className="flex items-center mb-2">
+                  <Link href={`/services/${service.id}`} className="flex items-center gap-2 mb-2">
                   <Image
                     src={service.logo}
                     alt={service.name}
-                    width={40}
-                    height={40}
+                    width={24}
+                    height={20}
                     className="text-amber-500"
                   />
                     <h3 className="text-lg font-bold hover:text-amber-600 transition-colors cursor-pointer">{service.name}</h3>

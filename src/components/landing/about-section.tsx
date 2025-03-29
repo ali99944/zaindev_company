@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Award, Users, Building2, Target } from "lucide-react"
+import AboutUsData from "@/src/types/sections/about-us"
 
 const features = [
   {
@@ -27,7 +28,7 @@ const features = [
   },
 ]
 
-export function AboutSection() {
+export function AboutSection({ aboutus_data }: { aboutus_data: AboutUsData }) {
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -42,7 +43,7 @@ export function AboutSection() {
               <div className="absolute -inset-4 bg-amber-500/20 rounded transform -rotate-6"></div>
               <div className="relative rounded overflow-hidden">
                 <Image
-                  src="https://img.freepik.com/free-photo/portrait-business-partners-greeting-one-another-by-handshaking-way-office_1150-3028.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
+                  src={aboutus_data.image ?? 'https://img.freepik.com/free-photo/portrait-business-partners-greeting-one-another-by-handshaking-way-office_1150-3028.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid'}
                   alt="About Zain Development"
                   width={600}
                   height={400}
@@ -54,10 +55,10 @@ export function AboutSection() {
 
           <div>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <h2 className="text-3xl font-bold mb-6 text-gray-800">عن زين التنموية</h2>
+              <h2 className="text-3xl font-bold mb-6 text-gray-800">{aboutus_data.name}</h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                شركة زين التنموية هي شركة رائدة في مجال المقاولات والتطوير في المملكة العربية السعودية. نحن نفخر بتقديم
-                خدمات عالية الجودة وحلول مبتكرة لعملائنا، مع التركيز على الاستدامة والتميز في كل مشروع.
+              {aboutus_data.short}
+              {aboutus_data.description}
               </p>
             </motion.div>
 

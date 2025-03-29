@@ -4,7 +4,10 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Phone } from 'lucide-react'
+import { Menu, X, Phone, Loader2 } from 'lucide-react'
+import { AppSettings } from "@/src/types/app-settings"
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import { LinesLoader } from "./loaders"
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -18,6 +21,13 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+    const { data: app_settings, isLoading: is_app_settings_loading } = useGetQuery<AppSettings>({
+      url: 'settings',
+      key: ['settings'],
+    })
+    
+    const settings = app_settings as unknown as AppSettings
+
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -26,9 +36,13 @@ export function Navbar() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
+            {
+              is_app_settings_loading ? (
+                <Loader2 className="w-4 h-4 transition-all duration-300 animate-spin" />
+              ) : (
+                <Link href="/" className="flex items-center gap-2">
               <Image
-                src="https://img.freepik.com/premium-vector/initial-letter-z-logo-design-vector-template_448617-543.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
+                src={settings?.logo}
                 alt="Zain Development"
                 width={40}
                 height={40}
@@ -38,6 +52,8 @@ export function Navbar() {
                 زين التنموية
               </span>
             </Link>
+              )
+            }
 
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center gap-8">
@@ -101,13 +117,19 @@ export function Navbar() {
 
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center gap-4">
-              <Link 
-                href="tel:+966500000000" 
+              {
+                is_app_settings_loading ? (
+                  <LinesLoader />
+                ) : (
+                  <Link 
+                href={`tel:${settings?.phone_number}`} 
                 className="flex items-center gap-2 bg-amber-500 text-black px-4 py-2 rounded hover:bg-amber-600 transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                <span className="text-sm font-medium">800 123 4567</span>
+                <span className="text-sm font-medium">{settings?.phone_number}</span>
               </Link>
+                )
+              }
             </div>
 
             {/* Mobile Menu Button */}
@@ -134,13 +156,19 @@ export function Navbar() {
             <div className="flex flex-col h-full">
               <div className="flex items-center justify-between p-4 border-b">
                 <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Image
-                    src="/logo.svg"
+                  {
+                    is_app_settings_loading ? (
+                      <Loader2 className="w-4 h-4 transition-all duration-300 animate-spin" />
+                    ) : (
+                      <Image
+                    src={settings?.logo}
                     alt="Zain Development"
                     width={40}
                     height={40}
                     className="w-10 h-10"
                   />
+                    )
+                  }
                   <span className="font-bold text-xl text-black">
                     زين التنموية
                   </span>

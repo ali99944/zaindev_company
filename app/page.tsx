@@ -11,6 +11,10 @@ import { MobileAppSection } from "@/src/components/common/mobile-app-section";
 import { ZainStoreSection } from "@/src/components/external-store/zain-store-section";
 import { getSeoData } from "@/src/server-actions/seo";
 import { Metadata } from "next";
+import { getPageData } from "@/src/server-actions/page-data";
+import ServiceCoverageData from "@/src/types/sections/service-coverage-data";
+import AboutUsData from "@/src/types/sections/about-us";
+import { FutureProject, StoreSection, ZainDevelopmentApp } from "@/src/types/sections/future-projects-data";
 
 
 export const generateMetadata = async (): Promise<Metadata> => {
@@ -42,17 +46,22 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
 
 export default async function Home() {
+  const coverage_data = await getPageData<ServiceCoverageData>('Our_Service_Coverage')
+  const aboutus_data = await getPageData<AboutUsData>('about_us')
+  const future_projects = await getPageData<FutureProject>('future_projects')
+  const store_section = await getPageData<StoreSection>('store_section')
+  const zaindev_app_data = await getPageData<ZainDevelopmentApp>('zain_development_app')
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-slate-950">
       <HeroSection />
       <ServicesSection />
-      <AboutSection />
-      <ServiceCoverageMap />
-      <PerfectPartnerSection />
-      <ZainStoreSection />
+      <AboutSection aboutus_data={aboutus_data} />
+      <ServiceCoverageMap coverage_data={coverage_data} />
+      <PerfectPartnerSection future_projects={future_projects} />
+      <ZainStoreSection store_data={store_section} />
       <PartnersSection />
       <CtaSection />
-      <MobileAppSection />
+      <MobileAppSection zaindev_app_data={zaindev_app_data} />
       <ProjectsSection />
       <BlogsSection />
     </div>

@@ -3,10 +3,11 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { ShoppingBag, Star, Zap, Shield, Tag, Truck, CreditCard, Package } from 'lucide-react'
+import { ShoppingBag, Star, Zap, Shield, Tag, Package } from 'lucide-react'
 import { LaptopFrame } from "../device-frames/laptop-frame"
+import { StoreSection } from "@/src/types/sections/future-projects-data"
 
-export function ZainStoreSection() {
+export function ZainStoreSection({ store_data } : { store_data: StoreSection}) {
   return (
     <section className="py-20 relative overflow-hidden">
       {/* Background Pattern */}
@@ -17,20 +18,42 @@ export function ZainStoreSection() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="inline-flex items-center px-4 py-2 bg-gray-900 rounded-full mb-6">
               <ShoppingBag className="w-4 h-4 text-amber-500 ml-2" />
-              <span className="text-amber-500 text-sm font-medium">متجر زين الإلكتروني</span>
+              <span className="text-amber-500 text-sm font-medium">{store_data.sub_name}</span>
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              تسوق <span className="text-amber-500">منتجاتنا المميزة</span> بكل سهولة
+            {store_data.name}
             </h2>
 
             <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-              استمتع بتجربة تسوق فريدة مع متجر زين الإلكتروني. اختر من بين مجموعة واسعة من المنتجات عالية الجودة واحصل عليها بأفضل الأسعار وخدمة توصيل سريعة.
+            {store_data.description}
             </p>
 
             {/* Store Features */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <motion.div
+              {
+                (store_data.tags_list as Array<{ icon_svg: string, name: string, description: string}>).map(tag => {
+                  return <motion.div
+                    key={tag.name}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="flex items-start gap-3"
+                >
+                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-500 flex-shrink-0">
+                    <div className="w-5 h-5" dangerouslySetInnerHTML={{
+                      __html: tag.icon_svg
+                    }} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold mb-1">{tag.name}</h3>
+                    <p className="text-gray-600 text-sm">{tag.description}</p>
+                  </div>
+                </motion.div>
+                })
+              }
+              {/* <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -92,7 +115,7 @@ export function ZainStoreSection() {
                   <h3 className="font-bold mb-1">دفع آمن</h3>
                   <p className="text-gray-600 text-sm">طرق دفع متعددة وآمنة</p>
                 </div>
-              </motion.div>
+              </motion.div> */}
             </div>
 
             {/* CTA Button */}

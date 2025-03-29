@@ -7,9 +7,10 @@ import Link from "next/link"
 import { useGetQuery } from "@/src/hooks/queries-actions"
 import City from "@/src/types/city"
 import { LinesLoader } from "./loaders"
+import ServiceCoverageData from "@/src/types/sections/service-coverage-data"
 
 
-export function ServiceCoverageMap() {
+export function ServiceCoverageMap({ coverage_data }: {  coverage_data: ServiceCoverageData}) {
   const { data: available_cities, isLoading: is_available_cities_loading } = useGetQuery<City[]>({
     url: 'cities-avaliable',
     key: ['cities-avaliable']
@@ -42,10 +43,9 @@ export function ServiceCoverageMap() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl font-bold mb-4">تغطية خدماتنا</h2>
+          <h2 className="text-3xl font-bold mb-4">{coverage_data.name}</h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
-            نقدم خدماتنا في العديد من مدن المملكة العربية السعودية، ونعمل على التوسع لتغطية المزيد من المناطق لنكون
-            دائماً بالقرب منكم
+            {coverage_data.description}
           </p>
         </motion.div>
 
@@ -81,7 +81,7 @@ export function ServiceCoverageMap() {
             >
               <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
                 <CheckCircle className="w-5 h-5 text-green-500" />
-                <span>المدن المتوفر بها خدماتنا حالياً</span>
+                <span>{coverage_data.sub_name}</span>
               </h3>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -118,7 +118,7 @@ export function ServiceCoverageMap() {
                 <div className="w-5 h-5 rounded-full border-2 border-amber-500 flex items-center justify-center">
                   <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                 </div>
-                <span>المدن القادمة قريباً</span>
+                <span>{coverage_data.short}</span>
               </h3>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -153,8 +153,7 @@ export function ServiceCoverageMap() {
               className="mt-8"
             >
               <p className="text-gray-600 mb-6">
-                لا تجد مدينتك في القائمة؟ لا تقلق! نحن نعمل على توسيع نطاق خدماتنا لتغطية جميع مناطق المملكة. تواصل معنا
-                لمعرفة كيف يمكننا مساعدتك.
+                {coverage_data.seo_description}
               </p>
 
               <Link

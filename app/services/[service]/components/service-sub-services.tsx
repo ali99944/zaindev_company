@@ -1,11 +1,13 @@
 "use client"
 
 import { formatRiyal } from "@/lib/format-riyal"
-import { Service } from "@/src/types/service"
-import ServiceCategory from "@/src/types/service-category"
+import type { Service } from "@/src/types/service"
+import type ServiceCategory from "@/src/types/service-category"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
+import { ServiceRequestModal } from "./service-request-modal"
 
 interface ServiceSubServicesProps {
   service: ServiceCategory
@@ -13,6 +15,14 @@ interface ServiceSubServicesProps {
 }
 
 export function ServiceSubServices({ service, subServices }: ServiceSubServicesProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedService, setSelectedService] = useState<Service | null>(null)
+
+  const openModal = (subService: Service) => {
+    setSelectedService(subService)
+    setIsModalOpen(true)
+  }
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -25,7 +35,7 @@ export function ServiceSubServices({ service, subServices }: ServiceSubServicesP
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {subServices.map((subService, index) => (
             <motion.div
               key={subService.id}
@@ -37,32 +47,43 @@ export function ServiceSubServices({ service, subServices }: ServiceSubServicesP
             >
               <div className="relative h-52 overflow-hidden">
                 <Image
-                  src={
-                    'https://img.freepik.com/free-vector/hand-drawn-our-services-infographic-template_23-2149889309.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid'
-                  }
+                  src={subService.image || "/placeholder.svg"}
                   alt={subService.name}
                   fill
-                  className="object-cover transition-transform duration-500"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
 
               <div className="p-4">
                 <div className="flex items-center justify-between">
                   <Link href={`/services/${service.id}/${subService.id}`}>
-                      <h3 className="text-md font-bold mb-2 transition-colors">
-                      {subService.name}
-                      </h3>
+                    <h3 className="text-md font-bold mb-2 transition-colors">{subService.name}</h3>
                   </Link>
 
-                  <p className="text-amber-500">{formatRiyal('0')}</p>
+                  <p className="text-amber-500">{formatRiyal(subService.price)}</p>
                 </div>
-                <p className="text-gray-600 line-clamp-2">{subService.short}</p>
+                <p className="text-gray-600 line-clamp-2 mb-4">{subService.short}</p>
 
+                <button
+                  onClick={() => openModal(subService)}
+                  className="w-full bg-amber-500 hover:bg-amber-600 text-black py-2 px-4 rounded transition-colors duration-300 text-center font-medium"
+                >
+                  اطلب الخدمة
+                </button>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {selectedService && (
+        <ServiceRequestModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          service={service}
+          subService={selectedService}
+        />
+      )}
     </section>
   )
 }

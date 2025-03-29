@@ -16,6 +16,8 @@ import {
 import { useGetQuery } from "@/src/hooks/queries-actions"
 import ConnectedWebsite from "@/src/types/connected-website"
 import PrivacyType from "@/src/types/privacy-type"
+import { AppSettings } from "@/src/types/app-settings"
+import { LinesLoader } from "./loaders"
 
 
 export function Footer() {
@@ -29,6 +31,13 @@ export function Footer() {
     key: ['privacy-types']
   })
 
+  const { data: app_settings, isLoading: is_app_settings_loading } = useGetQuery<AppSettings>({
+    url: 'settings',
+    key: ['settings'],
+  })
+  
+  const settings = app_settings as unknown as AppSettings
+
   return (
     <footer className="bg-gray-900 text-white relative overflow-hidden">
       {/* Main Footer */}
@@ -38,7 +47,7 @@ export function Footer() {
             {/* Column 1: Company Info */}
             <div className="space-y-6">
               <Link href="/" className="flex items-center gap-3">
-                <Image src="https://img.freepik.com/premium-vector/initial-letter-z-logo-design-vector-template_448617-543.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid" alt="Zain Development" width={40} height={40} className="w-10 h-10" />
+                <Image src={settings?.logo} alt="Zain Development" width={40} height={40} className="w-10 h-10" />
                 <span className="font-bold text-xl text-amber-500">زين التنموية</span>
               </Link>
 
@@ -148,34 +157,50 @@ export function Footer() {
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-amber-500 mt-1 flex-shrink-0" />
-                  <Link
-                    href="https://maps.google.com/?q=الرياض،+المملكة+العربية+السعودية"
+                  {
+                    is_app_settings_loading ? (
+                      <LinesLoader />
+                    ) : (
+                      <Link
+                    href={`https://maps.google.com/?q=${settings?.translations.address}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-amber-500 hover:underline transition-colors"
                   >
-                    الرياض، المملكة العربية السعودية
-                    <br />
-                    طريق الملك فهد، برج المملكة، الطابق 20
+                    {settings?.translations.address}
                   </Link>
+                    )
+                  }
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-amber-500 flex-shrink-0" />
-                  <Link
-                    href="tel:8001234567"
+                  {
+                    is_app_settings_loading ? (
+                      <LinesLoader />
+                    ) : (
+                      <Link
+                    href={`tel:${settings?.phone_number}`}
                     className="text-gray-400 hover:text-amber-500 hover:underline transition-colors"
                   >
-                    800 123 4567
+                    {settings?.phone_number}
                   </Link>
+                    )
+                  }
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-amber-500 flex-shrink-0" />
-                  <Link
-                    href="mailto:info@zaindev.com"
+                  {
+                    is_app_settings_loading ? (
+                      <LinesLoader />
+                    ) : (
+                      <Link
+                    href={`mailto:${settings?.contact_email}`}
                     className="text-gray-400 hover:text-amber-500 hover:underline transition-colors"
                   >
-                    info@zaindev.com
+                    {settings?.contact_email}
                   </Link>
+                    )
+                  }
                 </li>
               </ul>
             </div>

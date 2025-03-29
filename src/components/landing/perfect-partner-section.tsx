@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { CheckCircle2 } from 'lucide-react'
+import { FutureProject } from "@/src/types/sections/future-projects-data"
 
 const benefits = [
   "تنفيذ المشاريع بأعلى معايير الجودة",
@@ -14,7 +15,7 @@ const benefits = [
   "خدمة ما بعد البيع وضمان على جميع الأعمال"
 ]
 
-export function PerfectPartnerSection() {
+export function PerfectPartnerSection({ future_projects }: { future_projects: FutureProject }) {
   return (
     <section className="py-20 relative overflow-hidden">
       {/* Background Pattern */}
@@ -38,7 +39,7 @@ export function PerfectPartnerSection() {
               viewport={{ once: true }}
               className="inline-flex items-center px-4 py-2 bg-gray-900 rounded-full mb-6"
             >
-              <span className="text-amber-500 text-sm font-medium">الشريك الأمثل لمشاريع المستقبل</span>
+              <span className="text-amber-500 text-sm font-medium">{future_projects.sub_name}</span>
             </motion.div>
             
             <motion.h2
@@ -48,7 +49,7 @@ export function PerfectPartnerSection() {
               transition={{ delay: 0.1 }}
               className="text-3xl md:text-4xl font-bold mb-6"
             >
-              نبني رؤيتك بخبرة واحترافية
+              {future_projects.name}
             </motion.h2>
             
             <motion.p
@@ -58,7 +59,7 @@ export function PerfectPartnerSection() {
               transition={{ delay: 0.2 }}
               className="text-gray-600 mb-8"
             >
-              في زين التنموية، نؤمن بأن كل مشروع هو فرصة لإظهار التميز. نحن نعمل بشكل وثيق مع عملائنا لفهم احتياجاتهم وتحويل أفكارهم إلى واقع ملموس يتجاوز توقعاتهم.
+              {future_projects.short}
             </motion.p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">

@@ -1,8 +1,7 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
-import { ChevronDown } from "lucide-react"
+import { FaqsComponent } from "@/src/components/common/faqs-component"
 
 interface ServiceFaqProps {
   service: {
@@ -14,11 +13,7 @@ interface ServiceFaqProps {
 export function ServiceFaq({ service }: ServiceFaqProps) {
     console.log(service);
     
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
-  const toggleFaq = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
 
   const faqs = [
     {
@@ -70,38 +65,7 @@ export function ServiceFaq({ service }: ServiceFaqProps) {
         </motion.div>
 
         <div className="max-w-3xl mx-auto">
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded overflow-hidden"
-              >
-                <button
-                  onClick={() => toggleFaq(index)}
-                  className="flex items-center justify-between w-full p-4 text-right"
-                >
-                  <h3 className="text-lg font-bold">{faq.question}</h3>
-                  <ChevronDown
-                    className={`w-5 h-5 text-amber-500 transition-transform duration-300 ${
-                      openIndex === index ? "transform rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                <div
-                  className={`px-6 overflow-hidden transition-all duration-300 ${
-                    openIndex === index ? "max-h-96 pb-6" : "max-h-0"
-                  }`}
-                >
-                  <p className="text-gray-600">{faq.answer}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <FaqsComponent faqs={faqs} />
         </div>
       </div>
     </section>
