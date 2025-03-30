@@ -22,7 +22,7 @@ interface ServiceCategory {
     discount: Discount | null
     services: Service[]
     services_categories_faqs: ServiceCategoryFaq[]
-    services_categories_backs: ServiceCategoryBack[]
+    status_services_backs: ServiceCategoryBack[]
     services_categories: ServiceCategory
 }
 

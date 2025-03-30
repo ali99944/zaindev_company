@@ -7,7 +7,7 @@ import { ChevronRight, ChevronLeft, Quote } from "lucide-react"
 import ServiceCategory from "@/src/types/service-category"
 
 
-export function ServiceTestimonials({ testimonials } : { testimonials: ServiceCategory['services_categories_backs'] }) {
+export function ServiceTestimonials({ testimonials } : { testimonials: ServiceCategory['status_services_backs'] }) {
   const [activeIndex, setActiveIndex] = useState(0)
 
   const nextTestimonial = () => {
