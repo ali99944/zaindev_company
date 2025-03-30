@@ -11,6 +11,8 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
 
   const service = await getSingleServiceCategory((await params).service)
 
+  console.log(service);
+  
   return (
     <main className="min-h-screen bg-gray-50">
       <ServiceHero service={service} />
