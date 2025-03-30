@@ -17,7 +17,7 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
       <ServiceSubServices service={service} subServices={service.services} />
       <ServiceFeatures service={service} />
       <ServiceProcess service={service} />
-      <ServiceTestimonials />
+      <ServiceTestimonials testimonials={service.services_categories_backs} />
       <ServiceFaq service={service} />
       <CtaSection />
     </main>

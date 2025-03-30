@@ -18,12 +18,8 @@ export interface ServiceCategory {
 }
 
 export interface ServiceCategoryFaq {
-  id: number
   questions: string
   answer: string
-  logo: string
-  created_at: string
-  updated_at: string
 }
 
 export interface ServiceCategoryBack {

@@ -4,38 +4,10 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { ChevronRight, ChevronLeft, Quote } from "lucide-react"
+import ServiceCategory from "@/src/types/service-category"
 
-// Sample testimonials data
-const testimonials = [
-  {
-    id: 1,
-    name: "أحمد محمد",
-    position: "مالك فيلا سكنية",
-    image: "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg",
-    content:
-      "تعاملت مع زين التنموية في بناء فيلتي الخاصة، وكانت التجربة رائعة من البداية إلى النهاية. التزموا بكل التفاصيل التي طلبتها وكان التنفيذ بجودة عالية جداً.",
-  },
-  {
-    id: 2,
-    name: "سارة الجبر",
-    position: "مديرة شركة",
-    image:
-      "https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg",
-    content:
-      "نفذت شركة زين التنموية مشروع مكاتبنا الجديدة بكفاءة عالية والتزام تام بالجدول الزمني والميزانية المحددة. فريق العمل محترف ومتعاون، وسنستمر بالتعامل معهم في مشاريعنا القادمة.",
-  },
-  {
-    id: 3,
-    name: "خالد العنزي",
-    position: "مدير عام مجموعة الخليج التجارية",
-    image:
-      "https://img.freepik.com/free-photo/handsome-confident-smiling-man-with-hands-crossed-chest_176420-18743.jpg",
-    content:
-      "تعاملنا مع شركة زين التنموية في العديد من المشاريع، ووجدنا فيهم الشريك المثالي الذي يلتزم بالجودة والمواعيد. أنصح بالتعامل معهم لكل من يبحث عن الاحترافية والإتقان.",
-  },
-]
 
-export function ServiceTestimonials() {
+export function ServiceTestimonials({ testimonials } : { testimonials: ServiceCategory['services_categories_backs'] }) {
   const [activeIndex, setActiveIndex] = useState(0)
 
   const nextTestimonial = () => {
@@ -45,6 +17,8 @@ export function ServiceTestimonials() {
   const prevTestimonial = () => {
     setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
   }
+
+  if(testimonials.length == 0) return null
 
   return (
     <section className="py-16 bg-gray-50">
@@ -94,22 +68,22 @@ export function ServiceTestimonials() {
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-16 h-16 rounded-full overflow-hidden">
                           <Image
-                            src={testimonial.image || "/placeholder.svg"}
-                            alt={testimonial.name}
+                            src={testimonial.logo || "/placeholder.svg"}
+                            alt={testimonial.client_name}
                             width={64}
                             height={64}
                             className="w-full h-full object-cover"
                           />
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold">{testimonial.name}</h3>
-                          <p className="text-gray-600">{testimonial.position}</p>
+                          <h3 className="text-xl font-bold">{testimonial.client_name}</h3>
+                          <p className="text-gray-600">{testimonial.client_position}</p>
                         </div>
                         <div className="mr-auto">
                           <Quote className="w-10 h-10 text-amber-500/20" />
                         </div>
                       </div>
-                      <p className="text-gray-700 leading-relaxed text-lg">{testimonial.content}</p>
+                      <p className="text-gray-700 leading-relaxed text-lg">{testimonial.client_message}</p>
                     </div>
                   </div>
                 ))}

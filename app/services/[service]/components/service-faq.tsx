@@ -1,52 +1,16 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { FaqsComponent } from "@/src/components/common/faqs-component"
+import { Faq, FaqsComponent } from "@/src/components/common/faqs-component"
+import ServiceCategory from "@/src/types/service-category";
 
 interface ServiceFaqProps {
-  service: {
-    id: number
-    name: string
-  }
+  service: ServiceCategory
 }
 
 export function ServiceFaq({ service }: ServiceFaqProps) {
-    console.log(service);
-    
 
-
-  const faqs = [
-    {
-      question: "ما هي مدة تنفيذ المشاريع؟",
-      answer:
-        "تختلف مدة تنفيذ المشاريع حسب حجم المشروع ومتطلباته، ولكن بشكل عام تتراوح المدة بين 6 أشهر إلى 18 شهراً للمشاريع السكنية، ويتم تحديد الجدول الزمني بدقة في بداية المشروع.",
-    },
-    {
-      question: "هل تقدمون خدمات التصميم الداخلي؟",
-      answer:
-        "نعم، نقدم خدمات التصميم الداخلي الشاملة التي تشمل اختيار الألوان والمواد والأثاث والإضاءة وجميع عناصر التصميم الداخلي، مع مراعاة ذوق العميل واحتياجاته.",
-    },
-    {
-      question: "هل تقدمون ضمانات على الأعمال المنفذة؟",
-      answer:
-        "نعم، نقدم ضمانات على جميع الأعمال المنفذة تتراوح بين سنة إلى خمس سنوات حسب نوع العمل، كما نقدم خدمات الصيانة الدورية بعد انتهاء فترة الضمان.",
-    },
-    {
-      question: "ما هي المناطق التي تغطونها بخدماتكم؟",
-      answer:
-        "نقدم خدماتنا في جميع مناطق المملكة العربية السعودية، مع تركيز خاص على المدن الرئيسية مثل الرياض وجدة والدمام.",
-    },
-    {
-      question: "كيف يمكنني الحصول على عرض سعر لمشروعي؟",
-      answer:
-        "يمكنك التواصل معنا عبر نموذج الاتصال في موقعنا الإلكتروني أو الاتصال بنا مباشرة على الرقم 800 123 4567، وسيقوم فريقنا بالتواصل معك لتحديد موعد لزيارة الموقع وتقديم عرض سعر مناسب.",
-    },
-    {
-      question: "هل تقدمون خدمات الإشراف على المشاريع فقط؟",
-      answer:
-        "نعم، يمكننا تقديم خدمات الإشراف على المشاريع فقط إذا كان لديك مقاول خاص بك، حيث نقوم بالإشراف على جميع مراحل التنفيذ لضمان الالتزام بالمعايير والمواصفات المطلوبة.",
-    },
-  ]
+  if(service.services_categories_faqs.length == 0) return null
 
   return (
     <section className="py-16">
@@ -65,7 +29,7 @@ export function ServiceFaq({ service }: ServiceFaqProps) {
         </motion.div>
 
         <div className="max-w-3xl mx-auto">
-        <FaqsComponent faqs={faqs} />
+        <FaqsComponent faqs={service.services_categories_faqs as unknown as Faq[]} />
         </div>
       </div>
     </section>

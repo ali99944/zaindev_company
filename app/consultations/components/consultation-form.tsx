@@ -14,6 +14,7 @@ export function ConsultationForm() {
     client_phone: "",
     subject: "",
     description: "",
+    package_id: 1
   })
   
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -44,6 +45,7 @@ export function ConsultationForm() {
                 client_phone: "",
                 subject: "",
                 description: "",
+                package_id: 1
             })
             
 
