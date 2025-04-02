@@ -28,7 +28,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning>
+    <html lang="ar" dir="rtl" suppressHydrationWarning className='light' style={{
+      colorScheme: 'light'
+    }}>
       <body className={`${arabic.className} bg-white dark:bg-slate-950`}>
         <ReactQueryProvider>
             <Navbar />

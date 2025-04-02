@@ -75,7 +75,7 @@ export function BlogsGrid  () {
                 transition={{ delay: index * 0.1 }}
                 className="group bg-white rounded overflow-hidden transition-all duration-300"
               >
-                <Link href={`/articles/${blog.id}`} className="block">
+                <Link href={`/blogs/${blog.id}`} className="block">
                   <div className="relative h-56 overflow-hidden">
                     <Image
                       src={blog.image || "/placeholder.svg"}
