@@ -1,5 +1,5 @@
 import { CtaSection } from "@/src/components/landing/cta-section"
-import { BlogAuthor } from "./components/blog-author"
+// import { BlogAuthor } from "./components/blog-author"
 import { BlogContent } from "./components/blog-content"
 import { BlogHero } from "./components/blog-hero"
 import { getSingleBlog } from "@/src/server-actions/blog"
@@ -42,7 +42,7 @@ export default async function BlogPage({ params }: { params: Promise<{ id: strin
     <main>
       <BlogHero blog={blog} />
       <BlogContent blog={blog} />
-      <BlogAuthor blog={blog} />
+      {/* <BlogAuthor blog={blog} /> */}
       <RelatedBlogs blogs={[]} />
       <CtaSection />
     </main>

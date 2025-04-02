@@ -79,12 +79,12 @@ export function BlogHero({ blog }: { blog: Blog }) {
 
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4 text-amber-500" />
-              <span>xxxxxxxxxxxxxxxx</span>
+              <span>{blog.publish_date}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <Clock className="w-4 h-4 text-amber-500" />
-              <span>{0} دقائق للقراءة</span>
+              <span>{blog.reading_time} دقائق للقراءة</span>
             </div>
           </motion.div>
 
