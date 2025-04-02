@@ -13,6 +13,7 @@ interface ServiceCategory {
     name: string
     short: string
     logo: string
+    image: string
 
     seo_title: string
     seo_description: string

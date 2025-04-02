@@ -96,7 +96,7 @@ export function ServiceHero({ service }: ServiceProps) {
             <div className="absolute -inset-4 bg-amber-500/20 rounded transform rotate-3"></div>
             <div className="relative rounded overflow-hidden shadow-lg h-[450px]">
               <Image
-                src={service.logo}
+                src={service.image}
                 alt={service.name}
                 fill
                 className="object-cover"
