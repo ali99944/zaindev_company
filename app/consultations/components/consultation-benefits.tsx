@@ -66,7 +66,7 @@ export function ConsultationBenefits() {
               <div className="absolute -inset-4 bg-amber-500/20 rounded transform -rotate-3"></div>
               <div className="relative rounded overflow-hidden">
                 <Image
-                  src="https://img.freepik.com/free-photo/business-people-discussing-together-meeting_23-2148908922.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
+                  src="https://img.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899134.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
                   alt="استشارات زين التنموية"
                   width={600}
                   height={450}

@@ -79,7 +79,7 @@ export function ServicesProcess() {
             <div className="absolute -inset-4 bg-amber-500/20 rounded transform -rotate-3"></div>
             <div className="relative rounded overflow-hidden shadow-lg">
               <Image
-                src="https://img.freepik.com/free-photo/business-people-shaking-hands-together_53876-30568.jpg"
+                src="https://img.freepik.com/free-photo/serious-professional-female-architect-concentrated-paper-poses-dekstop-with-sketches-blueprints-develops-new-project_273609-50614.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
                 alt="منهجية العمل"
                 width={600}
                 height={450}

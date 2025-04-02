@@ -79,7 +79,7 @@ export function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`group relative bg-white rounded p-4 transition-all duration-300 border border-gray-200 `}
+              className={`group relative bg-gray-100 rounded p-4 transition-all duration-300 border border-gray-200 `}
             >
 
                 <div>
@@ -104,7 +104,7 @@ export function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: (service_categories?.data.length ?? 0) * 0.1 }}
-              className="group relative bg-white rounded p-4 transition-all duration-300 border border-gray-200 "
+              className="group relative bg-gray-100 rounded p-4 transition-all duration-300 border border-gray-200 "
             >
               <div className="flex items-center gap-2">
                 <Search className="w-8 h-8 text-amber-500" />
@@ -139,8 +139,8 @@ export function ServicesSection() {
           <Image
             src="https://img.freepik.com/free-vector/house-maintenance-abstract-concept-vector-illustration_107173-24432.jpg"
             alt="Decorative"
-            width={300}
-            height={300}
+            width={400}
+            height={400}
             className="object-contain"
           />
         </div>

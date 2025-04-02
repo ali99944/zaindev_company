@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { AboutHero } from "./components/about-hero";
 import { AboutValues } from "./components/about-values";
-import { AboutTeam } from "./components/about-team";
+// import { AboutTeam } from "./components/about-team";
 import { AboutStats } from "./components/about-stats";
 import { AboutTestimonials } from "./components/about-testimonials";
 import { AboutClients } from "./components/about-clients";
@@ -51,7 +51,7 @@ export default async function Page() {
       <AboutClients />
       <AboutCta />
       <AboutTestimonials />
-      <AboutTeam />
+      {/* <AboutTeam /> */}
     </>
   )
 }

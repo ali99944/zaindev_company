@@ -10,7 +10,7 @@ const testimonials = [
     id: 1,
     name: "أحمد محمد",
     role: "مالك مشروع سكني",
-    image: "https://img.freepik.com/free-photo/portrait-handsome-smiling-stylish-young-man-model-dressed-red-checkered-shirt-fashion-man-posing_158538-4909.jpg",
+    image: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid",
     content: "استفدت كثيراً من الاستشارات التي قدمها فريق زين التنموية. ساعدوني على توفير الكثير من الوقت والمال في مشروع بناء منزلي الجديد.",
     rating: 5
   },
@@ -18,7 +18,7 @@ const testimonials = [
     id: 2,
     name: "سارة عبدالله",
     role: "صاحبة مشروع تجاري",
-    image: "https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg",
+    image: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid",
     content: "الاستشارات المقدمة كانت احترافية للغاية وساعدتني على تجنب الكثير من المشاكل المحتملة في مشروعي التجاري. أنصح بشدة بخدماتهم.",
     rating: 5
   },
@@ -26,7 +26,7 @@ const testimonials = [
     id: 3,
     name: "خالد العمري",
     role: "مستثمر عقاري",
-    image: "https://img.freepik.com/free-photo/handsome-confident-smiling-man-with-hands-crossed-chest_176420-18743.jpg",
+    image: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid",
     content: "تعاملت مع زين التنموية في عدة مشاريع استثمارية، وكانت استشاراتهم دقيقة ومفيدة للغاية. فريق محترف يستحق الثقة.",
     rating: 4
   }

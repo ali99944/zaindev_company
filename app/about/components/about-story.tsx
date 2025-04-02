@@ -39,40 +39,40 @@ export function AboutStory() {
               <div className="space-y-4">
                 <div className="rounded overflow-hidden ">
                   <Image
-                    src="https://img.freepik.com/free-photo/construction-site-with-cranes-building_23-2149381879.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
+                    src="https://img.freepik.com/premium-photo/silhouettes-businesspeople-modern-office-setting-with-cityscape-digital-overlay_167857-2605.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
                     alt="بدايات زين التنموية"
                     width={300}
                     height={200}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-60 object-cover"
                   />
                 </div>
                 <div className="rounded overflow-hidden ">
                   <Image
-                    src="https://img.freepik.com/free-photo/construction-site-with-machinery_23-2149482721.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
+                    src="https://img.freepik.com/free-photo/abstract-networking-concept-still-life-arrangement_23-2149035709.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
                     alt="مشاريع زين التنموية"
                     width={300}
                     height={200}
-                    className="w-full h-64 object-cover"
+                    className="w-full h-80 object-cover"
                   />
                 </div>
               </div>
               <div className="space-y-4 mt-8">
                 <div className="rounded overflow-hidden ">
                   <Image
-                    src="https://img.freepik.com/free-photo/business-people-discussing-together-meeting_23-2148908922.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
+                    src="https://img.freepik.com/premium-photo/magnifying-glass-wooden-blocks-with-human-icons-yellow-background_271392-1468.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
                     alt="فريق زين التنموية"
                     width={300}
                     height={200}
-                    className="w-full h-64 object-cover"
+                    className="w-full h-80 object-cover"
                   />
                 </div>
                 <div className="rounded overflow-hidden ">
                   <Image
-                    src="https://img.freepik.com/free-photo/business-people-shaking-hands-together_53876-30568.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
+                    src="https://img.freepik.com/premium-photo/shadow-man-table-against-orange-wall_1048944-25844456.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
                     alt="شراكات زين التنموية"
                     width={300}
                     height={200}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-60 object-cover"
                   />
                 </div>
               </div>

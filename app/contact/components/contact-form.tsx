@@ -60,11 +60,11 @@ export function ContactForm() {
             <div className="absolute -inset-4 bg-amber-500/20 rounded transform -rotate-3"></div>
             <div className="relative rounded overflow-hidden shadow-lg">
               <Image
-                src="https://img.freepik.com/free-photo/vertical-low-angle-shot-high-rise-skyscrapers-glass-facade-frankfurt-germany_181624-7114.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
+                src="https://img.freepik.com/premium-vector/send-email-from-smartphone-icon-flat-style-paper-plane-vector-illustration-isolated-background-message-transfer-sign-business-concept_157943-38462.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
                 alt="اتصل بنا"
                 width={600}
-                height={450}
-                className="w-full h-[450px] object-cover"
+                height={600}
+                className="w-full h-[600px] object-cover"
               />
             </div>
           </motion.div>

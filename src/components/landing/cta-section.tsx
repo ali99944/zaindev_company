@@ -2,7 +2,10 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react'
+import { Phone, Mail, MapPin, Send, CheckCircle, Clock } from 'lucide-react'
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import { AppSettings } from "@/src/types/app-settings"
+import CardLoader from "../loaders/card-loader"
 
 export function CtaSection() {
   const [formState, setFormState] = useState({
@@ -42,6 +45,17 @@ export function CtaSection() {
     }, 1500)
   }
 
+  const { data: app_settings, isLoading: is_app_settings_loading } = useGetQuery<AppSettings>({
+    url: 'settings',
+    key: ['settings'],
+  })
+  
+  const settings = app_settings as unknown as AppSettings
+
+  if(is_app_settings_loading){
+    return <CardLoader />
+  }
+
   return (
     <section className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-amber-500 to-amber-600">
@@ -79,8 +93,8 @@ export function CtaSection() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-black mb-1">اتصل بنا</h3>
-                    <p className="text-gray-700">800 123 4567</p>
-                    <p className="text-gray-700">+966 50 000 0000</p>
+                    <p className="text-gray-700">{settings.phone_number}</p>
+                    <p className="text-gray-700">{settings.second_phone_number}</p>
                   </div>
                 </div>
                 
@@ -90,8 +104,8 @@ export function CtaSection() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-black mb-1">البريد الإلكتروني</h3>
-                    <p className="text-gray-700">info@zaindev.com</p>
-                    <p className="text-gray-700">support@zaindev.com</p>
+                    <p className="text-gray-700">{settings.contact_email}</p>
+                    {/* <p className="text-gray-700">support@zaindev.com</p> */}
                   </div>
                 </div>
                 
@@ -101,8 +115,18 @@ export function CtaSection() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-black mb-1">العنوان</h3>
-                    <p className="text-gray-700">الرياض، المملكة العربية السعودية</p>
-                    <p className="text-gray-700">طريق الملك فهد، برج المملكة، الطابق 20</p>
+                    <p className="text-gray-700">{settings.translations.address}</p>
+                    {/* <p className="text-gray-700">طريق الملك فهد، برج المملكة، الطابق 20</p> */}
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-500 flex-shrink-0">
+                    <Clock className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg text-black mb-1">ساعات العمل</h3>
+                    <p className="text-gray-700">{settings.translations.terms_summary}</p>
                   </div>
                 </div>
               </div>

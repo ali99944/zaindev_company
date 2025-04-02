@@ -2,37 +2,36 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Linkedin, Twitter, Mail } from "lucide-react"
 
 // Team members data
 const teamMembers = [
   {
-    name: "م. أحمد الزهراني",
-    position: "الرئيس التنفيذي",
+    name: "علي البحراني",
+    position: "مدير المؤسسة",
     image:
-      "https://img.freepik.com/free-photo/handsome-confident-smiling-man-with-hands-crossed-chest_176420-18743.jpg",
+      "https://scontent.fatz1-1.fna.fbcdn.net/v/t39.30808-6/462093055_10226332171080340_5448047990060080745_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=unGgxtnYXaAQ7kNvgEjTCBN&_nc_oc=Adld3x8od2Y-LjUzEIJC9aBO1qHwK2zoajyRy4adqedlulmDGLDEydTgfKxNgBTaJhw&_nc_zt=23&_nc_ht=scontent.fatz1-1.fna&_nc_gid=6uJVhY-CkFHBGNHCKDqrKg&oh=00_AYGCnSrYNN9n8bmtQpsArg3XHtHEcYC9p_lwt3sanEETnA&oe=67F2C37B",
     bio: "يمتلك أكثر من 20 عاماً من الخبرة في مجال المقاولات والتطوير العقاري. قاد العديد من المشاريع الكبرى في المملكة.",
   },
   {
-    name: "م. سارة العتيبي",
-    position: "مدير العمليات",
+    name: "د. نفيسة السيد",
+    position: "الرئيس التنفيذي",
     image:
-      "https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg",
+      "https://img.freepik.com/free-photo/woman-with-sign-face-with-question-mark_1134-555.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid",
     bio: "مهندسة معمارية بخبرة 15 عاماً، متخصصة في إدارة المشاريع الكبرى وتطوير العمليات التشغيلية.",
   },
-  {
-    name: "م. خالد السعيد",
-    position: "مدير المشاريع",
-    image:
-      "https://img.freepik.com/free-photo/portrait-handsome-smiling-stylish-young-man-model-dressed-red-checkered-shirt-fashion-man-posing_158538-4909.jpg",
-    bio: "مهندس مدني بخبرة 12 عاماً في إدارة المشاريع السكنية والتجارية. حاصل على شهادة PMP في إدارة المشاريع.",
-  },
-  {
-    name: "م. نورة القحطاني",
-    position: "مدير التصميم",
-    image: "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg",
-    bio: "مهندسة معمارية بخبرة 10 سنوات في التصميم المعماري والداخلي. حاصلة على العديد من الجوائز في مجال التصميم.",
-  },
+  // {
+  //   name: "م. خالد السعيد",
+  //   position: "مدير المشاريع",
+  //   image:
+  //     "https://img.freepik.com/free-photo/portrait-handsome-smiling-stylish-young-man-model-dressed-red-checkered-shirt-fashion-man-posing_158538-4909.jpg",
+  //   bio: "مهندس مدني بخبرة 12 عاماً في إدارة المشاريع السكنية والتجارية. حاصل على شهادة PMP في إدارة المشاريع.",
+  // },
+  // {
+  //   name: "م. نورة القحطاني",
+  //   position: "مدير التصميم",
+  //   image: "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg",
+  //   bio: "مهندسة معمارية بخبرة 10 سنوات في التصميم المعماري والداخلي. حاصلة على العديد من الجوائز في مجال التصميم.",
+  // },
 ]
 
 export function AboutTeam() {
@@ -80,8 +79,8 @@ export function AboutTeam() {
               <div className="p-4">
                 <h3 className="text-xl font-bold mb-1">{member.name}</h3>
                 <p className="text-amber-500 font-medium mb-4">{member.position}</p>
-                <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
-                <div className="flex items-center gap-3">
+                <p className="text-gray-600 text-sm">{member.bio}</p>
+                {/* <div className="flex items-center gap-3">
                   <a
                     href="#"
                     className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-amber-500 hover:text-black transition-colors"
@@ -100,7 +99,7 @@ export function AboutTeam() {
                   >
                     <Mail className="w-4 h-4" />
                   </a>
-                </div>
+                </div> */}
               </div>
             </motion.div>
           ))}

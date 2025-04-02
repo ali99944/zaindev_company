@@ -286,7 +286,7 @@ export function ConsultationForm() {
                 className="relative overflow-hidden rounded h-[200px]"
               >
                 <Image
-                  src="https://img.freepik.com/free-photo/business-partners-shaking-hands-agreement_53876-25164.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
+                  src="https://img.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899134.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
                   alt="استشارات زين التنموية"
                   fill
                   className="object-cover"

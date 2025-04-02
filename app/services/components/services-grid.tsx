@@ -48,11 +48,11 @@ export function ServicesGrid() {
                 transition={{ delay: index * 0.1 }}
                 className="bg-white rounded overflow-hidden transition-all duration-300 group border border-gray-100"
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-60 overflow-hidden">
                   <Image
                     src={
-                      service.logo ||
-                      "https://img.freepik.com/free-photo/construction-concept-with-engineering-tools_23-2149177174.jpg"
+                      service.image ||
+                      "https://img.freepik.com/premium-photo/high-angle-view-paintbrushes-table_1048944-19944480.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
                     }
                     alt={service.name}
                     fill
@@ -61,7 +61,15 @@ export function ServicesGrid() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute bottom-4 right-4">
                     <div className="bg-white/90 backdrop-blur-sm p-2 rounded-lg">
-                      <div className="w-10 h-10 flex items-center justify-center"></div>
+                      <div className="w-10 h-10 flex items-center justify-center">
+                        <Image
+                          src={service.logo || "/logo.svg"}
+                          alt={service.name}
+                          width={40}
+                          height={40}
+                          className="object-contain"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

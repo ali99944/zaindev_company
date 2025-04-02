@@ -56,9 +56,13 @@ export function Footer() {
                 والصيانة والخدمات المتخصصة
               </p>
 
-              <div className="flex items-center gap-4">
+              {
+                is_app_settings_loading ? (
+                  <LinesLoader />
+                ) : (
+                  <div className="flex items-center gap-4">
                 <Link
-                  href="https://facebook.com"
+                  href={settings.social_links.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors duration-300"
@@ -67,7 +71,7 @@ export function Footer() {
                   <Facebook className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="https://twitter.com"
+                  href={settings.social_links.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors duration-300"
@@ -76,7 +80,7 @@ export function Footer() {
                   <Twitter className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="https://instagram.com"
+                  href={settings.social_links.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors duration-300"
@@ -85,7 +89,7 @@ export function Footer() {
                   <Instagram className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="https://linkedin.com"
+                  href={settings.social_links.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors duration-300"
@@ -94,6 +98,8 @@ export function Footer() {
                   <Linkedin className="w-5 h-5" />
                 </Link>
               </div>
+                )
+              }
             </div>
 
             {/* Column 2: Quick Links */}

@@ -43,11 +43,11 @@ export function ProjectsHero() {
             <div className="absolute -inset-4 bg-amber-500/20 rounded-lg transform rotate-3"></div>
             <div className="relative rounded-lg overflow-hidden shadow-md">
               <Image
-                src="https://img.freepik.com/free-photo/industrial-building_1127-3391.jpg"
+                src="https://services.zaindev.com.sa/public/images/full-data/logos/b6c32b34-49b8-478e-ac7a-88fc9da69408_crop-architect-opening-blueprint_23-2147710985%20(1).avif"
                 alt="مشروعنا"
                 width={600}
                 height={400}
-                className="w-full h-96 object-cover"
+                className="w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-black/50 rounded-b-lg">

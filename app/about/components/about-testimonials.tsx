@@ -10,7 +10,7 @@ const testimonials = [
     id: 1,
     name: "عبدالله السعيد",
     position: "مدير شركة الأفق للاستثمار العقاري",
-    image: "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg",
+    image: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid",
     content:
       "تعاملنا مع شركة زين التنموية في العديد من المشاريع، ووجدنا فيهم الشريك المثالي الذي يلتزم بالجودة والمواعيد. أنصح بالتعامل معهم لكل من يبحث عن الاحترافية والإتقان.",
   },
@@ -19,7 +19,7 @@ const testimonials = [
     name: "سارة الجبر",
     position: "مالكة فيلا سكنية",
     image:
-      "https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg",
+      "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid",
     content:
       "قامت شركة زين التنموية ببناء فيلتي الخاصة، وكانت التجربة رائعة من البداية إلى النهاية. التزموا بكل التفاصيل التي طلبتها وكان التنفيذ بجودة عالية جداً.",
   },
@@ -28,7 +28,7 @@ const testimonials = [
     name: "فهد العنزي",
     position: "مدير عام مجموعة الخليج التجارية",
     image:
-      "https://img.freepik.com/free-photo/handsome-confident-smiling-man-with-hands-crossed-chest_176420-18743.jpg",
+      "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid",
     content:
       "نفذت شركة زين التنموية مشروع مجمعنا التجاري بكفاءة عالية والتزام تام بالجدول الزمني والميزانية المحددة. فريق العمل محترف ومتعاون، وسنستمر بالتعامل معهم في مشاريعنا القادمة.",
   },

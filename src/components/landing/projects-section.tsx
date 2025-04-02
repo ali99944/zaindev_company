@@ -3,7 +3,6 @@
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, } from 'lucide-react'
 import { useGetQuery } from "@/src/hooks/queries-actions"
 import Project from "@/src/types/project"
 import GridLoader from "../loaders/grid-loader"
@@ -42,7 +41,7 @@ export function ProjectsSection() {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex items-center justify-center text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -54,20 +53,7 @@ export function ProjectsSection() {
             </p>
           </motion.div>
           
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            <Link 
-              href="/projects"
-              className="inline-flex items-center gap-2 text-amber-500 hover:text-amber-600 transition-colors"
-            >
-              <span>جميع المشاريع</span>
-              <ArrowLeft className="w-4 h-4" />
-            </Link>
-          </motion.div>
+          
         </div>
 
         {/* Projects Grid */}
@@ -100,7 +86,7 @@ export function ProjectsSection() {
                   </div>
                   
                   <div className="p-4">
-                    <h3 className="text-lg font-bold mb-2 group-hover:text-amber-500 transition-colors">{project.name}</h3>
+                    <h3 className="text-md font-bold mb-2 group-hover:text-amber-500 transition-colors">{project.name}</h3>
                     <p className="text-gray-600 text-sm line-clamp-2">{project.description}</p>
                   </div>
                 </Link>
@@ -108,6 +94,21 @@ export function ProjectsSection() {
             ))}
           </AnimatePresence>
         </div>
+
+        <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-center mt-8"
+          >
+            <Link 
+              href="/projects"
+              className="inline-flex items-center gap-2 bg-gray-800 rounded px-4 py-2 text-amber-500 hover:text-amber-600 transition-colors"
+            >
+              <span>جميع المشاريع</span>
+            </Link>
+          </motion.div>
       </div>
     </section>
   )

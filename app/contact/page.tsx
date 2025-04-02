@@ -3,7 +3,7 @@ import { ContactFaq } from "./components/contact-faq";
 import { ContactForm } from "./components/contact-form";
 import { ContactHero } from "./components/contact-hero";
 import { ContactInfo } from "./components/contact-info";
-import { ContactOffices } from "./components/contact-offices";
+// import { ContactOffices } from "./components/contact-offices";
 import { Metadata } from "next";
 
 export const generateMetadata = async (): Promise<Metadata> => {
@@ -40,7 +40,7 @@ export default function ContactPage() {
       <ContactHero />
       <ContactInfo />
       <ContactForm />
-      <ContactOffices />
+      {/* <ContactOffices /> */}
       <ContactFaq />
     </main>
   )

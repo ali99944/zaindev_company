@@ -43,7 +43,7 @@ export function AboutSection({ aboutus_data }: { aboutus_data: AboutUsData }) {
               <div className="absolute -inset-4 bg-amber-500/20 rounded transform -rotate-6"></div>
               <div className="relative rounded overflow-hidden">
                 <Image
-                  src={aboutus_data.image ?? 'https://img.freepik.com/free-photo/portrait-business-partners-greeting-one-another-by-handshaking-way-office_1150-3028.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid'}
+                  src={'https://img.freepik.com/free-photo/about-as-service-contact-information-concept_53876-138509.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid'}
                   alt="About Zain Development"
                   width={600}
                   height={400}
