@@ -59,7 +59,7 @@ export function BlogsSection() {
               transition={{ delay: index * 0.1 }}
               className="group bg-white rounded overflow-hidden"
             >
-              <Link href={`/blog/${blog.id}`} className="block">
+              <Link href={`/blogs/${blog.id}`} className="block">
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src={blog.image || "/placeholder.svg"}
