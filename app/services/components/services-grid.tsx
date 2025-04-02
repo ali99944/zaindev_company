@@ -13,7 +13,6 @@ export function ServicesGrid() {
     key: ['services-categories']
   })
   
-  
   if(is_services_loading) {
     return <GridLoader />
   }
