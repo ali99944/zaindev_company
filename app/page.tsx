@@ -21,26 +21,14 @@ export const generateMetadata = async (): Promise<Metadata> => {
   const seo_data = await getSeoData('zain-development')
 
   return {
-    title: seo_data.page_name.ar,
-    description: seo_data.page_description.ar,
-    keywords: [
-      seo_data.page_keywords.ar,
-      seo_data.page_name.ar,
-    ],
+    title: encodeURIComponent(seo_data.page_name.ar),
+    description: encodeURIComponent(seo_data.page_description.ar),
+    keywords: encodeURIComponent(seo_data.page_keywords.ar),
     openGraph: {
       title: seo_data.og_title,
       description: seo_data.og_description,
       images: seo_data.og_image,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: seo_data.twitter_title,
-      description: seo_data.twitter_description,
-      images: seo_data.twitter_image,
-    },
-    alternates: {
-      canonical: seo_data.canonical_url,
-    },
+    }
   }
 }
 
