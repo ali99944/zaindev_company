@@ -2,13 +2,13 @@
 
 import GridLoader from "@/src/components/loaders/grid-loader"
 import { useGetQuery } from "@/src/hooks/queries-actions"
-import { Service } from "@/src/types/service"
+import ServiceCategory from "@/src/types/service-category"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 
 export function ServicesGrid() {
-  const { data: services , isLoading: is_services_loading} = useGetQuery<Service[]>({
+  const { data: services , isLoading: is_services_loading} = useGetQuery<ServiceCategory[]>({
     url: 'services-categories',
     key: ['services-categories']
   })
@@ -77,7 +77,7 @@ export function ServicesGrid() {
                 <div className="p-4">
                   <div className="flex justify-between items-start mb-4">
                     <div className="bg-amber-100 text-black text-xs font-medium px-2 py-1 rounded-full">
-                      {0} خدمات فرعية
+                      {service.services.length} خدمات فرعية
                     </div>
                     <Link href={`/services/${service.id}`}>
                         <h3 className="text-md font-bold transition-colors text-right">
