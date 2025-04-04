@@ -3,8 +3,23 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Clock, Calendar, CheckCircle } from 'lucide-react'
+import CardLoader from "@/src/components/loaders/card-loader"
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import { AppSettings } from "@/src/types/app-settings"
 
 export function ContactInfo() {
+  const { data: app_settings, isLoading: is_app_settings_loading } = useGetQuery<AppSettings>({
+    url: 'settings',
+    key: ['settings'],
+  })
+
+  const settings = app_settings as unknown as AppSettings
+
+  if(is_app_settings_loading) {
+    return <div className="p-4">
+      <CardLoader />
+    </div>
+  }
   return (
     <section className="py-20 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4">
@@ -26,7 +41,9 @@ export function ContactInfo() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-2">ساعات العمل</h3>
-                  <p className="text-gray-600">الأحد - الخميس: 8:00 صباحاً - 5:00 مساءً</p>
+                  <p className="text-gray-600">
+                    {settings.translations.terms_summary}
+                  </p>
                   <p className="text-gray-600">الجمعة - السبت: مغلق</p>
                 </div>
               </div>
@@ -48,7 +65,7 @@ export function ContactInfo() {
                 <span>خدمة العملاء على مدار الساعة</span>
               </h3>
               <p className="text-gray-600">
-                نقدم خدمة دعم فني على مدار الساعة للحالات الطارئة. يمكنكم التواصل معنا عبر الرقم الموحد 800 123 4567 في أي وقت.
+                نقدم خدمة دعم فني على مدار الساعة للحالات الطارئة. يمكنكم التواصل معنا عبر الرقم الموحد {settings?.phone_number} في أي وقت.
               </p>
             </div>
           </motion.div>

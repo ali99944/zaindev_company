@@ -34,7 +34,7 @@ export function ZainStoreSection({ store_data } : { store_data: StoreSection}) {
               {
                 (store_data.tags_list as Array<{ icon_svg: string, name: string, description: string}>).map(tag => {
                   return <motion.div
-                    key={tag.name}
+                    key={tag.icon_svg}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -283,17 +283,6 @@ export function ZainStoreSection({ store_data } : { store_data: StoreSection}) {
               </motion.div>
             ))}
           </div>
-
-          {/* Floating Action Button */}
-          <motion.div 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            className="fixed bottom-6 right-6"
-          >
-            <button className="bg-gradient-to-br from-amber-400 to-amber-600 p-4 rounded-full  hover:shadow-2xl transition-all flex items-center justify-center">
-              <ShoppingBag className="w-6 h-6 text-white" />
-            </button>
-          </motion.div>
         </div>
       </div>
     </LaptopFrame>

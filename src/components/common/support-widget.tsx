@@ -175,7 +175,7 @@ export function ChatWidget() {
     <>
       {/* Chat Button */}
       <motion.button
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-amber-500 text-black shadow flex items-center justify-center hover:bg-gray-800 hover:text-amber-500 transition-all duration-300 cursor-pointer"
+        className="fixed bottom-4 right-4 z-[999] w-12 h-12 rounded-full   shadow flex items-center justify-center bg-gray-800 text-amber-500 hover:bg-gray-700 transition-all duration-300 cursor-pointer"
         whileTap={{ scale: 0.9 }}
         onClick={toggleChat}
       >
@@ -190,7 +190,7 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-50 w-[350px] max-w-[calc(100vw-3rem)] h-[500px] max-h-[calc(100vh-10rem)] bg-white rounded shadow overflow-hidden flex flex-col"
+            className="fixed bottom-20 right-6 z-50 w-[350px] max-w-[calc(100vw-3rem)] h-[500px] max-h-[calc(100vh-10rem)] bg-white rounded shadow overflow-hidden flex flex-col"
           >
             {/* Header */}
             <div className="bg-amber-500 text-black p-4 flex items-center justify-between">

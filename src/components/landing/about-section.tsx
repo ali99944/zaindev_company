@@ -34,13 +34,13 @@ export function AboutSection({ aboutus_data }: { aboutus_data: AboutUsData }) {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: 0 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="relative"
           >
             <div className="relative">
-              <div className="absolute -inset-4 bg-amber-500/20 rounded transform -rotate-6"></div>
+              <div className="absolute -inset-4 bg-amber-500/20 rounded transform -rotate-6 max-md:rotate-0"></div>
               <div className="relative rounded overflow-hidden">
                 <Image
                   src={'https://img.freepik.com/free-photo/about-as-service-contact-information-concept_53876-138509.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid'}

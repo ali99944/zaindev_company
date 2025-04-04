@@ -58,7 +58,7 @@ export function ServiceCoverageMap({ coverage_data }: {  coverage_data: ServiceC
             className="relative"
           >
             <div className="relative overflow-hidden">
-              <div className="relative h-[600px] w-full">
+              <div className="relative h-[600px] max-md:h-[400px] max-sm:h-[280px]  w-full">
                 <Image
                   src="https://img.freepik.com/premium-vector/location-search-around-world-location-map-concept_99087-16.jpg?ga=GA1.1.259795667.1741285641&semt=ais_hybrid"
                   alt="خريطة المملكة العربية السعودية"

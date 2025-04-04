@@ -1,9 +1,19 @@
 "use client"
 
+import GridLoader from "@/src/components/loaders/grid-loader"
+import { useGetQuery } from "@/src/hooks/queries-actions"
+import { AppSettings } from "@/src/types/app-settings"
 import { motion } from "framer-motion"
 import { Phone, Mail, MapPin } from 'lucide-react'
 
 export function ContactHero() {
+  const { data: app_settings, isLoading: is_app_settings_loading } = useGetQuery<AppSettings>({
+    url: 'settings',
+    key: ['settings'],
+  })
+
+  const settings = app_settings as unknown as AppSettings
+
   return (
     <section className="relative pt-24 pb-16 overflow-hidden">
       {/* Background Pattern */}
@@ -71,7 +81,11 @@ export function ContactHero() {
             يسعدنا التواصل معكم والإجابة على جميع استفساراتكم. يمكنكم الاتصال بنا مباشرة أو إرسال رسالة من خلال النموذج أدناه.
           </motion.p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {
+            is_app_settings_loading ? (
+              <GridLoader />
+            ): (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -83,9 +97,9 @@ export function ContactHero() {
               </div>
               <h3 className="text-lg font-bold mb-2">اتصل بنا</h3>
               <p className="text-gray-600 text-center">
-                800 123 4567
+                {settings?.phone_number}
                 <br />
-                +966 50 000 0000
+                {settings?.second_phone_number}
               </p>
             </motion.div>
 
@@ -100,9 +114,7 @@ export function ContactHero() {
               </div>
               <h3 className="text-lg font-bold mb-2">البريد الإلكتروني</h3>
               <p className="text-gray-600 text-center">
-                info@zaindev.com
-                <br />
-                support@zaindev.com
+                {settings?.contact_email}
               </p>
             </motion.div>
 
@@ -117,12 +129,12 @@ export function ContactHero() {
               </div>
               <h3 className="text-lg font-bold mb-2">العنوان</h3>
               <p className="text-gray-600 text-center">
-                الرياض، المملكة العربية السعودية
-                <br />
-                طريق الملك فهد، برج المملكة، الطابق 20
+                {settings?.translations.address}
               </p>
             </motion.div>
           </div>
+            )
+          }
         </div>
       </div>
     </section>

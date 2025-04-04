@@ -12,6 +12,7 @@ import {
   Mail,
   Phone,
   MapPin,
+  Loader2,
 } from "lucide-react"
 import { useGetQuery } from "@/src/hooks/queries-actions"
 import ConnectedWebsite from "@/src/types/connected-website"
@@ -39,19 +40,25 @@ export function Footer() {
   const settings = app_settings as unknown as AppSettings
 
   return (
-    <footer className="bg-gray-900 text-white relative overflow-hidden">
+    <footer className="bg-amber-500/20 text-black relative overflow-hidden">
       {/* Main Footer */}
       <div className="py-12 relative z-10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* Column 1: Company Info */}
             <div className="space-y-6">
-              <Link href="/" className="flex items-center gap-3">
-                <Image src={settings?.logo} alt="Zain Development" width={40} height={40} className="w-10 h-10" />
-                <span className="font-bold text-xl text-amber-500">زين التنموية</span>
-              </Link>
+              {
+                is_app_settings_loading? (
+                  <Loader2 className="w-6 h-6 animate-spin" />
+                ) : (
+                  <Link href="/" className="flex items-center gap-3">
+                    <Image src={settings?.logo} alt="Zain Development" width={40} height={40} className="w-10 h-10" />
+                    <span className="font-bold text-xl text-amber-500">زين التنموية</span>
+                  </Link>
+                )
+              }
 
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-black leading-relaxed">
                 شركة رائدة في مجال المقاولات والتطوير في المملكة العربية السعودية. نقدم التميز في خدمات المقاولات
                 والصيانة والخدمات المتخصصة
               </p>
@@ -60,7 +67,7 @@ export function Footer() {
                 is_app_settings_loading ? (
                   <LinesLoader />
                 ) : (
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 text-amber-500/90">
                 <Link
                   href={settings.social_links.facebook}
                   target="_blank"
@@ -109,7 +116,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/about"
-                    className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
+                    className="text-black  hover:underline transition-colors flex items-center gap-2"
                   >
                     <span>من نحن</span>
                   </Link>
@@ -117,7 +124,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/services"
-                    className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
+                    className="text-black  hover:underline transition-colors flex items-center gap-2"
                   >
                     <span>خدماتنا</span>
                   </Link>
@@ -125,7 +132,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/projects"
-                    className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
+                    className="text-black  hover:underline transition-colors flex items-center gap-2"
                   >
                     <span>مشاريعنا</span>
                   </Link>
@@ -133,7 +140,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/store"
-                    className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
+                    className="text-black  hover:underline transition-colors flex items-center gap-2"
                   >
                     <span>المتجر</span>
                   </Link>
@@ -141,7 +148,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/contact"
-                    className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
+                    className="text-black  hover:underline transition-colors flex items-center gap-2"
                   >
                     <span>اتصل بنا</span>
                   </Link>
@@ -149,7 +156,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/consultations"
-                    className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
+                    className="text-black  hover:underline transition-colors flex items-center gap-2"
                   >
                     <span>احصل علي استشارة</span>
                   </Link>
@@ -162,7 +169,7 @@ export function Footer() {
               <h3 className="text-lg font-bold mb-6  ">اتصل بنا</h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-amber-500 mt-1 flex-shrink-0" />
+                  <MapPin className="w-5 h-5  mt-1 flex-shrink-0" />
                   {
                     is_app_settings_loading ? (
                       <LinesLoader />
@@ -171,7 +178,7 @@ export function Footer() {
                     href={`https://maps.google.com/?q=${settings?.translations.address}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-amber-500 hover:underline transition-colors"
+                    className="text-black  hover:underline transition-colors"
                   >
                     {settings?.translations.address}
                   </Link>
@@ -179,14 +186,14 @@ export function Footer() {
                   }
                 </li>
                 <li className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-amber-500 flex-shrink-0" />
+                  <Phone className="w-5 h-5  flex-shrink-0" />
                   {
                     is_app_settings_loading ? (
                       <LinesLoader />
                     ) : (
                       <Link
                     href={`tel:${settings?.phone_number}`}
-                    className="text-gray-400 hover:text-amber-500 hover:underline transition-colors"
+                    className="text-black  hover:underline transition-colors"
                   >
                     {settings?.phone_number}
                   </Link>
@@ -194,14 +201,14 @@ export function Footer() {
                   }
                 </li>
                 <li className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-amber-500 flex-shrink-0" />
+                  <Mail className="w-5 h-5  flex-shrink-0" />
                   {
                     is_app_settings_loading ? (
                       <LinesLoader />
                     ) : (
                       <Link
                     href={`mailto:${settings?.contact_email}`}
-                    className="text-gray-400 hover:text-amber-500 hover:underline transition-colors"
+                    className="text-black  hover:underline transition-colors"
                   >
                     {settings?.contact_email}
                   </Link>
@@ -220,7 +227,7 @@ export function Footer() {
                     href={website.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-amber-500 hover:underline transition-colors flex items-center gap-2"
+                    className="text-black  hover:underline transition-colors flex items-center gap-2"
                   >
                     {website.name}
                   </Link>
@@ -233,13 +240,13 @@ export function Footer() {
       </div>
 
       {/* Sub Footer */}
-      <div className="border-t border-gray-800 py-8 relative z-10 bg-gray-950">
+      <div className=" py-8 relative z-10 bg-amber-500/20">
                     {/* Policies */}
                     <div className="flex items-center justify-center gap-6 text-sm mb-4 flex-wrap px-4" >
               {
                 privacies_types?.data.map((p, index) => {
                   return (
-                    <Link key={index} href={`/privacies/${p.id}`} className="text-gray-400 hover:text-amber-500 hover:underline transition-colors">
+                    <Link key={index} href={`/privacies/${p.id}`} className="text-black  hover:underline transition-colors">
                       {p.name}
                     </Link>
                   )
@@ -250,7 +257,7 @@ export function Footer() {
           <div className="flex justify-between gap-8 items-center">
             {/* Copyright */}
             <div className="text-center md:text-right">
-              <p className="text-gray-400 text-sm">
+              <p className="text-black text-sm">
                 &copy; {new Date().getFullYear()} زين التنموية. جميع الحقوق محفوظة
               </p>
             </div>
@@ -258,13 +265,13 @@ export function Footer() {
 
             {/* Developer Credit */}
             <div className="text-center md:text-left">
-              <p className="text-gray-500 text-xs">
+              <p className="text-black text-xs">
                 تطوير وتصميم بواسطة{" "}
                 <a
                   href="https://example.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-amber-500 hover:underline"
+                  className="text-amber-600 hover:underline"
                 >
                   شركة زين التنموية
                 </a>
@@ -275,7 +282,7 @@ export function Footer() {
       </div>
 
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+      {/* <div className="absolute inset-0 opacity-5">
         <div
           className="absolute inset-0 w-full h-full"
           style={{
@@ -283,7 +290,7 @@ export function Footer() {
             backgroundSize: "20px 20px",
           }}
         />
-      </div>
+      </div> */}
     </footer>
   )
 }

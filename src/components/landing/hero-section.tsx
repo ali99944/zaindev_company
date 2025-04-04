@@ -4,19 +4,17 @@ import { useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Star, Award, Shield } from 'lucide-react'
+import { Star, Award, Shield, Loader2 } from 'lucide-react'
 import { useGetQuery } from "@/src/hooks/queries-actions"
 import HeroData from "@/src/types/sections/hero-data"
 // import { StatCounter } from "@/components/stat-counter"
 
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null)
-  const { data: heroData } = useGetQuery<HeroData>({
+  const { data: heroData, isLoading: is_hero_data_loading } = useGetQuery<HeroData>({
     url: 'full-data/home/key',
     key: ['full-data/home/key']
   })
-
-  console.log(heroData);
   
 
   const constructionFeatures = [
@@ -237,13 +235,20 @@ export function HeroSection() {
                   className="relative h-full overflow-hidden rounded"
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Image
-                    src={heroData?.data.logo ?? ''}
-                    alt="مشروع بناء حديث"
-                    width={600}
-                    height={400}
-                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
-                  />
+                  {
+                    is_hero_data_loading ? (
+                      <Loader2 className="w-6 h-6 animate-spin" />
+                    ) : (
+                      <Image
+                        src={heroData?.data.logo ?? ''}
+                        alt="مشروع بناء حديث"
+                        width={600}
+                        height={400}
+                        loading={"lazy"}
+                        className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                      />
+                    )
+                  }
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent pointer-events-none" />
                 </motion.div>
               </div>

@@ -5,6 +5,8 @@ import Link from "next/link"
 import { Building2 } from "lucide-react"
 
 export function AboutCta() {
+
+
   return (
     <section className="py-20 bg-amber-500 relative overflow-hidden">
       {/* Background Pattern */}
