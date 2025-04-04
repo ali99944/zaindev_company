@@ -1,19 +1,10 @@
 interface Seo {
     seo_key: string
-    page_name: {
-        en: string
-        ar: string
-    }
+    page_name: string
 
-    page_description: {
-        en: string
-        ar: string
-    }
+    page_description: string
 
-    page_keywords: {
-        en: string
-        ar: string
-    }
+    page_keywords: string
 
     robots_meta: string
     canonical_url: string

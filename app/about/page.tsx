@@ -15,11 +15,11 @@ export const generateMetadata = async (): Promise<Metadata> => {
   const seo_data = await getSeoData('about-us')
 
   return {
-    title: seo_data.page_name.ar,
-    description: seo_data.page_description.ar,
+    title: seo_data.page_name,
+    description: seo_data.page_description,
     keywords: [
-      seo_data.page_keywords.ar,
-      seo_data.page_name.ar,
+      seo_data.page_keywords,
+      seo_data.page_name,
     ],
     openGraph: {
       title: seo_data.og_title,

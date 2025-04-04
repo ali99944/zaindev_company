@@ -19,11 +19,13 @@ import { FutureProject, StoreSection, ZainDevelopmentApp } from "@/src/types/sec
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const seo_data = await getSeoData('zain-development')
+  console.log(seo_data);
+  
 
   return {
-    title: encodeURIComponent(seo_data.page_name.ar),
-    description: encodeURIComponent(seo_data.page_description.ar),
-    keywords: encodeURIComponent(seo_data.page_keywords.ar),
+    title: seo_data.page_name,
+    description: seo_data.page_description,
+    keywords: seo_data.page_keywords,
     openGraph: {
       title: seo_data.og_title,
       description: seo_data.og_description,
