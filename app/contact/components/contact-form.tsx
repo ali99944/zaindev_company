@@ -6,6 +6,8 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Send, CheckCircle } from "lucide-react"
+import { useMutationAction } from "@/src/hooks/queries-actions"
+import moment from "moment"
 
 export function ContactForm() {
   const [formState, setFormState] = useState({
@@ -24,27 +26,46 @@ export function ContactForm() {
     setFormState((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const sendContactusAction = useMutationAction({
+    url: 'contactus',
+    method: 'post'
+  })
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-      setFormState({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      })
+    await sendContactusAction.mutateAsync({
+      name: formState.name,
+      email: formState.email,
+      phone: formState.phone,
+      project_details: formState.message,
+      consult_date: moment().format('YYYY-MM-DD'),
+    }, {
+      onSuccess() {
+        setIsSubmitted(true)
+        setIsSubmitting(false)
 
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false)
-      }, 5000)
-    }, 1500)
+        setFormState({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        })
+
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false)
+        }, 5000)
+      },
+
+      onError() {
+        setIsSubmitting(false)
+        alert("فشل ارسال الاستشارة")
+      }
+    })
+
   }
 
   return (
