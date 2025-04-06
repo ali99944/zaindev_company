@@ -62,7 +62,8 @@ export function ServiceSubServices({ service, subServices }: ServiceSubServicesP
 
                   <p className="text-amber-500">{formatRiyal(subService.price)}</p>
                 </div>
-                <p className="text-gray-600 line-clamp-2 mb-4">{subService.short}</p>
+                <p className="text-gray-600 mb-4">{subService.short}</p>
+                {/* <p className="text-gray-600 line-clamp-2 mb-4">{subService.short}</p> */}
 
                 <button
                   onClick={() => openModal(subService)}

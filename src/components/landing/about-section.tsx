@@ -62,7 +62,7 @@ export function AboutSection({ aboutus_data }: { aboutus_data: AboutUsData }) {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.title}
@@ -72,11 +72,13 @@ export function AboutSection({ aboutus_data }: { aboutus_data: AboutUsData }) {
                   transition={{ delay: index * 0.1 }}
                   className="bg-white p-4 rounded shadow-none"
                 >
-                  <div className="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center text-amber-500 mb-4">
-                    {feature.icon}
+                  <div className="flex justify-center">
+                    <div className="w-12 h-12 rounded-full  bg-amber-50 flex items-center justify-center text-amber-500 mb-4">
+                      {feature.icon}
+                    </div>
                   </div>
-                  <h3 className="text-lg font-bold mb-2 text-gray-800">{feature.title}</h3>
-                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                  <h3 className="text-center text-lg font-bold mb-2 text-gray-800">{feature.title}</h3>
+                  <p className="text-center text-gray-600 text-sm">{feature.description}</p>
                 </motion.div>
               ))}
             </div>

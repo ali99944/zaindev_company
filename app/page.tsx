@@ -15,6 +15,7 @@ import { getPageData } from "@/src/server-actions/page-data";
 import ServiceCoverageData from "@/src/types/sections/service-coverage-data";
 import AboutUsData from "@/src/types/sections/about-us";
 import { FutureProject, StoreSection, ZainDevelopmentApp } from "@/src/types/sections/future-projects-data";
+import NotFoundServices from "@/src/components/landing/not-found-services";
 
 
 export const generateMetadata = async (): Promise<Metadata> => {
@@ -45,6 +46,7 @@ export default async function Home() {
     <div className="min-h-screen flex flex-col bg-white dark:bg-slate-950">
       <HeroSection />
       <ServicesSection />
+      <NotFoundServices />
       <AboutSection aboutus_data={aboutus_data} />
       <ServiceCoverageMap coverage_data={coverage_data} />
       <PerfectPartnerSection future_projects={future_projects} />

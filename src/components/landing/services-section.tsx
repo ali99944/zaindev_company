@@ -6,27 +6,27 @@ import Image from "next/image"
 import Link from "next/link"
 import GridLoader from "../loaders/grid-loader"
 import { Search } from "lucide-react"
-import ServiceCategory from "@/src/types/service-category"
+import type ServiceCategory from "@/src/types/service-category"
 
 type OtherServiceType = {
-  status: number,
-  name: string,
+  status: number
+  name: string
   description: string
 }
 
 const extraOtherService: OtherServiceType = {
   status: 0,
-  name: 'خدمات اخرى',
-  description: 'تصفح جميع خدماتنا واطلب الخدمة التي تحتاجها بضغطة زر',
+  name: "خدمات اخرى",
+  description: "تصفح جميع خدماتنا واطلب الخدمة التي تحتاجها بضغطة زر",
 }
 
 export function ServicesSection() {
   const { data: service_categories, isLoading } = useGetQuery<ServiceCategory[]>({
-    url: 'services-categories',
-    key: ['services-categories'],
+    url: "services-categories",
+    key: ["services-categories"],
   })
 
-  if(isLoading) {
+  if (isLoading) {
     return <GridLoader />
   }
 
@@ -48,7 +48,7 @@ export function ServicesSection() {
         </svg>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="px-4 relative z-10">
         <div className="flex items-center justify-between mb-12">
           <div>
             <motion.h2
@@ -71,7 +71,7 @@ export function ServicesSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {service_categories?.data.map((service, index) => (
             <motion.div
               key={service.name}
@@ -79,60 +79,85 @@ export function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`group relative bg-gray-100 rounded p-4 transition-all duration-300 border border-gray-200 `}
+              className="group relative bg-white rounded overflow-hidden transition-all duration-300"
             >
-
-                <div>
-                  <Link href={`/services/${service.id}`} className="flex items-center gap-2 mb-2">
+              <Link href={`/services/${service.id}`} className="block">
+                <div className="relative h-48 overflow-hidden">
                   <Image
-                    src={service.logo}
+                    src={service.image || "/placeholder.svg?height=200&width=400"}
                     alt={service.name}
-                    width={24}
-                    height={20}
-                    className="text-amber-500"
+                    fill
+                    className="object-cover transition-transform duration-500"
                   />
-                    <h3 className="text-lg font-bold hover:text-amber-600 transition-colors cursor-pointer">{service.name}</h3>
-                  </Link>
-                  <p className="text-gray-600 text-sm line-clamp-3">{service.short}</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+                  {/* Service info overlay */}
+                  <div className="absolute bottom-0 right-0 p-3 w-full">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center">
+                        <Image
+                          src={service.logo || "/placeholder.svg"}
+                          alt={service.name}
+                          width={20}
+                          height={20}
+                          className="text-amber-500"
+                        />
+                      </div>
+                      <h3 className="text-md font-bold text-white group-hover:text-amber-300 transition-colors">
+                        {service.name}
+                      </h3>
+                    </div>
+                  </div>
                 </div>
+              </Link>
             </motion.div>
           ))}
 
-            <motion.div
-              key={extraOtherService.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: (service_categories?.data.length ?? 0) * 0.1 }}
-              className="group relative bg-gray-100 rounded p-4 transition-all duration-300 border border-gray-200 "
-            >
-              <div className="flex items-center gap-2">
-                <Search className="w-8 h-8 text-amber-500" />
-                <div>
-                  <Link href="/services" className="flex items-center mb-2">
-                    <h3 className="text-lg font-bold transition-colors cursor-pointer">{extraOtherService.name}</h3>
-                  </Link>
-                  <p className="text-gray-600 text-sm line-clamp-3">{extraOtherService.description}</p>
+          <motion.div
+            key={extraOtherService.name}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: (service_categories?.data.length ?? 0) * 0.1 }}
+            className="group relative bg-white rounded overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md"
+          >
+            <Link href="/services" className="block">
+              <div className="relative h-48 overflow-hidden bg-amber-50">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Search className="w-16 h-16 text-amber-300" />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+                {/* Service info overlay */}
+                <div className="absolute bottom-0 right-0 p-3 w-full">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center">
+                      <Search className="w-4 h-4 text-amber-500" />
+                    </div>
+                    <h3 className="text-md font-bold text-white group-hover:text-amber-300 transition-colors">
+                      {extraOtherService.name}
+                    </h3>
+                  </div>
                 </div>
               </div>
-            </motion.div>
-          
+            </Link>
+          </motion.div>
         </div>
 
         <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-12 flex items-center justify-center gap-2 text-amber-500 hover:text-amber-600 transition-colors"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="mt-12 flex items-center justify-center"
+        >
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 text-black bg-amber-500 hover:bg-amber-600 transition-colors px-6 py-2 rounded font-medium"
           >
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-500 transition-colors"
-            >
-              <span>تصفح جميع خدماتنا الاخرى</span>
-            </Link>
-          </motion.div>
+            <span>تصفح جميع خدماتنا الاخرى</span>
+          </Link>
+        </motion.div>
 
         {/* Decorative Image */}
         <div className="absolute left-0 bottom-0 w-96 h-96 opacity-10 pointer-events-none">
@@ -148,3 +173,4 @@ export function ServicesSection() {
     </section>
   )
 }
+

@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Loader, CheckCircle } from "lucide-react"
 import type ConsultationPackage from "@/src/types/consultation-package"
+import { useMutationAction } from "@/src/hooks/queries-actions"
 
 interface ConsultationSubscriptionModalProps {
   isOpen: boolean
@@ -84,6 +85,10 @@ export function ConsultationSubscriptionModal({
     return Object.keys(newErrors).length === 0
   }
 
+  const subscribePackageAction = useMutationAction({
+    url: 'packages-request',
+    method: 'post'
+  })
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -93,35 +98,29 @@ export function ConsultationSubscriptionModal({
 
     setIsSubmitting(true)
 
-    try {
-      // Here you would make an API call to submit the subscription data
-      // Example:
-      // const response = await fetch('/api/subscription', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({
-      //     package_id: selectedPackage?.id,
-      //     package_type: packageType,
-      //     ...formData
-      //   })
-      // })
+    await subscribePackageAction.mutateAsync({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      company_name: formData.company,
+      notes: formData.notes,
+      package_id: selectedPackage?.id,
+    }, {
+      onSuccess: () => {
+        setIsSubmitting(false)
+        setIsSuccess(true)
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
-      setIsSuccess(true)
-
-      // Reset form after 2 seconds and close modal
-      setTimeout(() => {
-        setFormData({ name: "", email: "", phone: "", company: "", notes: "" })
-        setIsSuccess(false)
-        onClose()
-      }, 2000)
-    } catch (error) {
-      console.error("Error submitting form:", error)
-    } finally {
-      setIsSubmitting(false)
-    }
+        setTimeout(() => {
+          setFormData({ name: "", email: "", phone: "", company: "", notes: "" })
+          setIsSuccess(false)
+          onClose()
+        }, 2000)
+      },
+      onError: (error) => {
+        setIsSubmitting(false)
+        setErrors({ ...errors, name: error.message })
+      },
+    })
   }
 
   if (!isOpen || !selectedPackage) return null
@@ -148,7 +147,7 @@ export function ConsultationSubscriptionModal({
             className="bg-white rounded-lg shadow-xl w-full max-w-md relative z-10 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between p-4 border-b">
+            <div className="flex items-center justify-between p-4 border-b border-b-gray-200">
               <h2 className="text-xl font-bold">الاشتراك في باقة {selectedPackage.name}</h2>
               <button
                 onClick={onClose}

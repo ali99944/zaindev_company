@@ -85,7 +85,8 @@ export function ServicesGrid() {
                     </Link>
                   </div>
 
-                  <p className="text-gray-600  line-clamp-2 text-right">{service.short}</p>
+                  {/* <p className="text-gray-600  line-clamp-2 text-right">{service.short}</p> */}
+                  <p className="text-gray-600  text-right">{service.short}</p>
                 </div>
               </motion.div>
             ))}

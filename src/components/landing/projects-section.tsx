@@ -6,23 +6,14 @@ import Link from "next/link"
 import { useGetQuery } from "@/src/hooks/queries-actions"
 import Project from "@/src/types/project"
 import GridLoader from "../loaders/grid-loader"
-import ProjectType from "@/src/types/project-type"
-
-
-
 
 export function ProjectsSection() {
   const { data: projects, isLoading: is_projects_loading } = useGetQuery<Project[]>({
     url: 'projects',
     key: ['projects']
   })
-
-  const { data: categories, isLoading: is_categories_loading } = useGetQuery<ProjectType[]>({
-    url: 'projects',
-    key: ['projects']
-  })
   
-  if(is_projects_loading || is_categories_loading) {
+  if(is_projects_loading) {
     return <GridLoader />
   }
 
@@ -57,7 +48,7 @@ export function ProjectsSection() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <AnimatePresence mode="wait">
             {projects?.data.map((project, index) => (
               <motion.div
@@ -78,14 +69,14 @@ export function ProjectsSection() {
                       height={300}
                       className="w-full h-full object-cover transition-transform duration-300"
                     />
-                    <div className="absolute top-4 right-4">
+                    <div className="absolute top-2 right-2">
                       <span className="inline-block px-3 py-1 bg-amber-500 text-black rounded-full text-xs font-medium">
-                        {categories?.data.find(c => c.name === project.category_info)?.name}
+                        {project.project_type}
                       </span>
                     </div>
                   </div>
                   
-                  <div className="p-4">
+                  <div className="px-4 mt-4">
                     <h3 className="text-md font-bold mb-2 group-hover:text-amber-500 transition-colors">{project.name}</h3>
                     <p className="text-gray-600 text-sm line-clamp-2">{project.description}</p>
                   </div>
@@ -104,7 +95,7 @@ export function ProjectsSection() {
           >
             <Link 
               href="/projects"
-              className="inline-flex items-center gap-2 bg-gray-800 rounded px-4 py-2 text-amber-500 hover:text-amber-600 transition-colors"
+              className="inline-flex items-center gap-2 bg-amber-500 rounded px-4 py-2 text-black hover:bg-amber-600 transition-colors"
             >
               <span>جميع المشاريع</span>
             </Link>

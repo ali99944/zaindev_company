@@ -93,7 +93,7 @@ export function BlogsSection() {
           >
             <Link 
               href="/blogs"
-              className="inline-flex items-center gap-2 bg-gray-800 rounded px-4 py-2 text-amber-500 hover:text-amber-600 transition-colors"
+              className="inline-flex items-center gap-2 bg-amber-500 rounded px-4 py-2 text-black hover:bg-amber-600 transition-colors"
             >
               <span>جميع المقالات</span>
             </Link>
